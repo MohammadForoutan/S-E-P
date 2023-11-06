@@ -1,18 +1,16 @@
 import "@mantine/core/styles.css";
-import { MantineProvider, Switch } from "@mantine/core";
+import { DirectionProvider, MantineProvider } from "@mantine/core";
 import { theme } from "./theme";
-import { Route } from "react-router-dom";
-import { Auth } from "./pages/auth/auth";
-
+import { RouterProvider } from "react-router-dom";
+import { router } from "./pages/router";
+import "./i18n/i18n"
 export default function App() {
-  return <MantineProvider theme={theme}>
-    <Switch>
-      <Route path="/login">
-        <Auth />
-      </Route>
-      <Route path="*">
-        <Auth />
-      </Route>
-    </Switch>
-  </MantineProvider>;
+
+  return (
+    <DirectionProvider initialDirection="rtl" detectDirection={true}>
+      <MantineProvider theme={theme} >
+        <RouterProvider router={router} />
+      </MantineProvider>
+    </DirectionProvider>
+  );
 }
