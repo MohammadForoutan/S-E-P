@@ -10,12 +10,12 @@ import {
     Group,
     Button,
 } from '@mantine/core';
-import classes from './Login.module.css';
+import classes from '../Login/Login.module.css';
 import { HomeLayout } from '../Layouts/HomeLayout';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-export function Login() {
+export function Register() {
     const { t } = useTranslation('auth');
     const navigate = useNavigate()
 
@@ -25,12 +25,12 @@ export function Login() {
 
                 <Container size={420} py={40} pb={90}>
                     <Title ta="center" className={classes.title}>
-                        {t("login")} &ndash; {t("welcome")}
+                        {t("register")} &ndash; {t("welcome")}
                     </Title>
                     <Text bg={"white"} c="black" size="sm" ta="center" mt={5} p={3} py={7}>
-                        {t("dontHaveAccount")}
-                        <Anchor fw={"800"} c={"blue"} size="sm" component="button" px={2} onClick={() => navigate("/auth/register")}>
-                            {t("createAccount")}
+                        {t("haveAccount")}
+                        <Anchor fw={"800"} c={"blue"} size="sm" component="button" px={2} onClick={() => navigate("/auth/login")}>
+                            {t("loginAccount")}
                         </Anchor>
                     </Text>
 
@@ -39,12 +39,9 @@ export function Login() {
                         <PasswordInput label={t("password")} placeholder={t("password")} required mt="md" />
                         <Group justify="space-between" mt="lg">
                             <Checkbox label={t("remember")} />
-                            <Anchor component="button" size="sm" fw={800}>
-                                {t("forget")}
-                            </Anchor>
                         </Group>
                         <Button fullWidth mt="xl">
-                            {t("login")}
+                            {t("register")}
                         </Button>
                     </Paper>
                 </Container>

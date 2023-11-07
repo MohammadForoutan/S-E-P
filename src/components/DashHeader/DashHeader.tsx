@@ -1,15 +1,39 @@
-import { Menu, Group, Center, Burger, Container, Button, Select } from '@mantine/core';
+import { Menu, Group, Center, Burger, Container, Select } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Icon3dCubeSphere, IconChevronDown } from '@tabler/icons-react';
-import classes from './Header.module.css';
+import { IconChevronDown } from '@tabler/icons-react';
+import classes from './DashHeader.module.css';
+import { useLangStore } from '../../stores/langStore';
 import { useTranslation } from 'react-i18next';
 import { useEffect } from 'react';
 import { LANGS } from '../../i18n/locales/type';
-import { useNavigate } from 'react-router-dom';
-import { useLangStore } from '../../stores/langStore';
-export function Header() {
-    const [opened, { toggle }] = useDisclosure(false);
 
+const links = [
+    { link: '/about', label: 'Features' },
+    {
+        link: '#1',
+        label: 'Learn',
+        links: [
+            { link: '/docs', label: 'Documentation' },
+            { link: '/resources', label: 'Resources' },
+            { link: '/community', label: 'Community' },
+            { link: '/blog', label: 'Blog' },
+        ],
+    },
+    { link: '/about', label: 'About' },
+    { link: '/pricing', label: 'Pricing' },
+    {
+        link: '#2',
+        label: 'Support',
+        links: [
+            { link: '/faq', label: 'FAQ' },
+            { link: '/demo', label: 'Book a demo' },
+            { link: '/forums', label: 'Forums' },
+        ],
+    },
+];
+
+export function DashHeader() {
+    const [opened, { toggle }] = useDisclosure(false);
     const langStore = useLangStore();
     const { t, i18n } = useTranslation(['menu'])
     useEffect(() => {
@@ -22,33 +46,6 @@ export function Header() {
         i18n.changeLanguage(lang)
         langStore.updateLang(lang);
     }
-
-
-    const links = [
-        { link: '/about', label: t("about") },
-        // {
-        //     link: '#1',
-        //     label: 'Learn',
-        //     links: [
-        //         { link: '/docs', label: 'Documentation' },
-        //         { link: '/resources', label: 'Resources' },
-        //         { link: '/community', label: 'Community' },
-        //         { link: '/blog', label: 'Blog' },
-        //     ],
-        // },
-        // { link: '/pricing', label: 'Pricing' },
-        // {
-        //     link: '#2',
-        //     label: 'Support',
-        //     links: [
-        //         { link: '/faq', label: 'FAQ' },
-        //         { link: '/demo', label: 'Book a demo' },
-        //         { link: '/forums', label: 'Forums' },
-        //     ],
-        // },
-    ];
-
-
 
     const items = links.map((link) => {
         const menuItems = link.links?.map((item) => (
@@ -87,26 +84,14 @@ export function Header() {
         );
     });
 
-    const navigate = useNavigate()
     return (
         <header className={classes.header}>
+
             <Container size="md">
                 <div className={classes.inner}>
-                    {/* <MantineLogo size={28} /> */}
-                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-aperture" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#00abfb" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-                        <path d="M3.6 15h10.55" />
-                        <path d="M6.551 4.938l3.26 10.034" />
-                        <path d="M17.032 4.636l-8.535 6.201" />
-                        <path d="M20.559 14.51l-8.535 -6.201" />
-                        <path d="M12.257 20.916l3.261 -10.034" />
-                    </svg>
+                    <div>LOGO</div>
                     <Group gap={5} visibleFrom="sm">
                         {items}
-                    </Group>
-
-                    <Group>
                         <Select
                             defaultValue={"fa_IR"}
                             style={{ width: "100px" }}
@@ -119,14 +104,9 @@ export function Header() {
 
                         />
                     </Group>
-
-                    <Group visibleFrom="md">
-                        <Button variant="default" onClick={() => navigate("/auth/login")}>{t('login')}</Button>
-                        <Button onClick={() => navigate("/auth/register")}>{t('register')}</Button>
-                    </Group>
                     <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
                 </div>
             </Container>
-        </header >
+        </header>
     );
 }
