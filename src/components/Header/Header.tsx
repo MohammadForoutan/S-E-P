@@ -16,7 +16,7 @@ export function Header() {
         i18n.changeLanguage(langStore.lang)
         if (langStore.lang === LANGS.fa_IR) document.body.style.direction = "rtl"
         else document.body.style.direction = "ltr"
-    }, [langStore.lang]);
+    }, [langStore.lang, i18n]);
 
     const changeLang = (lang: LANGS) => {
         i18n.changeLanguage(lang)
@@ -108,15 +108,15 @@ export function Header() {
 
                     <Group>
                         <Select
-                            defaultValue={"fa_IR"}
-                            style={{ width: "100px" }}
+                            defaultValue={langStore.lang}
+                            value={langStore.lang}
+                            w={"100px"}
                             data={[
                                 { label: "فارسی", value: "fa_IR" },
                                 { label: "English", value: "en_US" }
                             ]}
                             onChange={changeLang}
                             allowDeselect={false}
-
                         />
                     </Group>
 

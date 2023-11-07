@@ -38,9 +38,19 @@ export function DashHeader() {
     const { t, i18n } = useTranslation(['menu'])
     useEffect(() => {
         i18n.changeLanguage(langStore.lang)
-        if (langStore.lang === LANGS.fa_IR) document.body.style.direction = "rtl"
-        else document.body.style.direction = "ltr"
-    }, [langStore.lang]);
+        if (langStore.lang === LANGS.fa_IR) {
+            document.body.style.direction = "rtl"
+            document.body.style.textAlign = "right";
+            const nodes = document.body.querySelectorAll("input, textarea, select")
+            Array.from(nodes).forEach(i => i['style'].textAlign = "right")
+        } else {
+            document.body.style.direction = "ltr"
+            document.body.style.textAlign = "left";
+            const nodes = document.body.querySelectorAll("input, textarea, select")
+            Array.from(nodes).forEach(i => i['style'].textAlign = "left")
+
+        }
+    }, [langStore.lang, i18n]);
 
     const changeLang = (lang: LANGS) => {
         i18n.changeLanguage(lang)
@@ -86,14 +96,14 @@ export function DashHeader() {
 
     return (
         <header className={classes.header}>
-
             <Container size="md">
                 <div className={classes.inner}>
                     <div>LOGO</div>
                     <Group gap={5} visibleFrom="sm">
                         {items}
                         <Select
-                            defaultValue={"fa_IR"}
+                            value={langStore.lang}
+                            defaultValue={langStore.lang}
                             style={{ width: "100px" }}
                             data={[
                                 { label: "فارسی", value: "fa_IR" },

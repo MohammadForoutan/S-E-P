@@ -37,7 +37,16 @@ export default {
 			notifications: "اعلان‌ها",
 			billing: "billing چی چیست؟",
 			security: "امنیت",
-			settings: "تنظیمات"
+			settings: "تنظیمات",
+			support: "پشتیبانی",
+			logout: "خروج از سیستم"
+		},
+		dashSetting: {
+			lang: "زبان"
+		},
+		dashSupport: {
+			title: "عنوان:",
+			titlePlace: "یک عنوان مناسب بنویسید."
 		}
 	},
 	en_US: {
@@ -78,7 +87,16 @@ export default {
 			notifications: "Notifications",
 			billing: "Billing",
 			security: "Security",
-			settings: "Settings"
+			settings: "Settings",
+			support: "Support",
+			logout: "Logout"
+		},
+		dashSetting: {
+			lang: "Language"
+		},
+		dashSupport: {
+			title: "Title",
+			titlePlace: "Enter a clear title"
 		}
 	}
 };

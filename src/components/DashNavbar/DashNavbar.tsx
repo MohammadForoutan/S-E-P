@@ -1,50 +1,47 @@
 import { useState } from 'react';
-import { Group, Code } from '@mantine/core';
+import { Group, Code, Button, Box } from '@mantine/core';
 import {
     IconBellRinging,
     IconFingerprint,
     IconKey,
     IconSettings,
-    Icon2fa,
-    IconDatabaseImport,
-    IconReceipt2,
-    IconSwitchHorizontal,
     IconLogout,
+    IconHelpCircle,
 } from '@tabler/icons-react';
 import classes from './DashNavbar.module.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const data = [
     { link: '/dashboard/notifications', label: 'notifications', icon: IconBellRinging },
-    { link: '/dashboard/billing', label: 'billing', icon: IconReceipt2 },
-    { link: '/dashboard/security', label: 'security', icon: IconFingerprint },
-    { link: '', label: 'SSH Keys', icon: IconKey },
-    { link: '', label: 'Databases', icon: IconDatabaseImport },
-    { link: '', label: 'Authentication', icon: Icon2fa },
+    // { link: '/dashboard/billing', label: 'billing', icon: IconReceipt2 },
+    // { link: '/dashboard/security', label: 'security', icon: IconFingerprint },
+    // { link: '', label: 'SSH Keys', icon: IconKey },
+    // { link: '', label: 'Databases', icon: IconDatabaseImport },
+    // { link: '', label: 'Authentication', icon: Icon2fa },
     { link: '/dashboard/setting', label: 'settings', icon: IconSettings },
+    { link: '/dashboard/support', label: 'support', icon: IconHelpCircle },
 ];
 
 export function DashNavbar() {
     const [active, setActive] = useState('notifications');
-    const navigate = useNavigate()
+
     const { t } = useTranslation(["dashboardNav"])
 
     const links = data.map((item) => (
-        <a
+        <Link
+            to={item.link}
+            style={{ marginBottom: "8px" }}
             className={classes.link}
             data-active={item.label === active || undefined}
-            href={item.link}
             key={item.label}
             onClick={(event) => {
-                event.preventDefault();
                 setActive(item.label);
-                navigate(item.link)
             }}
         >
             <item.icon className={classes.linkIcon} stroke={1.5} />
             <span>{t(item.label)}</span>
-        </a>
+        </Link>
     ));
 
     return (
@@ -60,15 +57,17 @@ export function DashNavbar() {
             </div>
 
             <div className={classes.footer}>
-                <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
+                {/* <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
                     <IconSwitchHorizontal className={classes.linkIcon} stroke={1.5} />
                     <span>Change account</span>
-                </a>
+                </a> */}
 
-                <a href="#" className={classes.link} onClick={(event) => event.preventDefault()}>
-                    <IconLogout className={classes.linkIcon} stroke={1.5} />
-                    <span>Logout</span>
-                </a>
+                <Box bg={"red"}>
+                    <Link to="/" className={classes.logout}>
+                        <IconLogout className={classes.linkIcon} stroke={1.5} />
+                        <span>{t("logout")}</span>
+                    </Link>
+                </Box>
             </div>
         </nav>
     );
