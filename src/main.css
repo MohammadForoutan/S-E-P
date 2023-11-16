@@ -1,4 +1,30 @@
+@font-face {
+  font-family: "peyda";
+  src: url("./assets/font/woff2/PeydaWeb-Regular.woff2") format("woff");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "peyda bold";
+  src: url("./assets/font/woff2/PeydaWeb-Bold.woff2") format("woff");
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: "peyda bolder";
+  src: url("./assets/font/woff2/PeydaWeb-Black.woff2") format("woff");
+  font-weight: bolder;
+}
+
+@import url("");
 body,
 * {
-	font-family: "vazirmatn" !important;
+  font-family: "peyda" !important;
+  font-weight: normal;
+}
+
+h1,
+h2 {
+  font-family: "peyda bolder" !important;
+  font-weight: bold !important;
 }

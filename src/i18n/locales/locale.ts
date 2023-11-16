@@ -3,7 +3,9 @@ export default {
 		menu: {
 			register: "ثبت نام",
 			login: "ورود",
-			about: "درباره ما"
+			about: "درباره ما",
+			home: "خانه",
+			contact: "ارتباط باما"
 		},
 		home: {
 			welcome: "خوش آمدید"
@@ -53,7 +55,9 @@ export default {
 		menu: {
 			register: "Sign up",
 			login: "Log in",
-			about: "About"
+			about: "About",
+			home: "Home",
+			contact: "Contact"
 		},
 		home: {
 			welcome: "welcome bro"
