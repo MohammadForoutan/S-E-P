@@ -1,14 +1,10 @@
-import { Menu, Group, Center, Burger, Container, Select } from "@mantine/core";
+import { Menu, Group, Center, Burger, Container } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
 import classes from "./DashHeader.module.css";
-import { useLangStore } from "../../stores/langStore";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
-import { LANGS } from "../../i18n/locales/type";
 import { ChangeLanguage } from "../ChangeLanguage/ChangeLanguage";
 
-const links = [
+const links: any = [
   //   { link: "/about", label: "Features" },
   //   {
   //     link: "#1",
@@ -36,8 +32,8 @@ const links = [
 export function DashHeader() {
   const [opened, { toggle }] = useDisclosure(false);
 
-  const items = links.map((link) => {
-    const menuItems = link.links?.map((item) => (
+  const items = links.map((link: any) => {
+    const menuItems = link.links?.map((item: any) => (
       <Menu.Item key={item.link}>{item.label}</Menu.Item>
     ));
 

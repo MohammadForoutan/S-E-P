@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { Group, Code, Button, Box } from "@mantine/core";
+import { Group, Code, Box } from "@mantine/core";
 import {
   IconBellRinging,
-  IconFingerprint,
   IconKey,
   IconSettings,
   IconLogout,
   IconHelpCircle,
 } from "@tabler/icons-react";
 import classes from "./DashNavbar.module.css";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 const data = [
@@ -39,7 +38,7 @@ export function DashNavbar() {
       className={classes.link}
       data-active={item.label === active || undefined}
       key={item.label}
-      onClick={(event) => {
+      onClick={(_event) => {
         setActive(item.label);
       }}
     >

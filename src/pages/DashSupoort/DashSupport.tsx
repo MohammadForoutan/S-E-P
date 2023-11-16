@@ -1,16 +1,10 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import {
-  Autocomplete,
   Button,
-  Container,
-  Flex,
   Group,
-  Input,
   Loader,
-  MultiSelect,
   Paper,
   Select,
-  Stack,
   Table,
   TextInput,
   Textarea,
@@ -35,10 +29,10 @@ export function DashSupport() {
     </Table.Tr>
   ));
 
-  const timeoutRef = useRef<number>(-1);
-  const [value, setValue] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [data, setData] = useState<string[]>([]);
+  // const _timeoutRef = useRef<number>(-1);
+  const [value, _setValue] = useState("");
+  const [loading, _setLoading] = useState(false);
+  // const [data, setData] = useState<string[]>([]);
   const { t } = useTranslation("dashSupport");
   return (
     <div>

@@ -1,11 +1,11 @@
 import { Select } from "@mantine/core";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLangStore } from "../../stores/langStore";
 import { LANGS } from "../../i18n/locales/type";
 
 function ChangeLanguage() {
-  const { t, i18n } = useTranslation(["menu"]);
+  const { i18n } = useTranslation(["menu"]);
   const langStore = useLangStore();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ function ChangeLanguage() {
       document.body.style.direction = "rtl";
       document.body.style.textAlign = "right";
       Array.from(document.querySelectorAll("textarea, select, input")).forEach(
-        (element) => {
+        (element: any) => {
           element.style.direction = "rtl";
           element.style.textAlign = "right";
         }
@@ -23,7 +23,7 @@ function ChangeLanguage() {
       document.body.style.direction = "ltr";
       document.body.style.textAlign = "left";
       Array.from(document.querySelectorAll("textarea, select, input")).forEach(
-        (element) => {
+        (element: any) => {
           element.style.direction = "ltr";
           element.style.textAlign = "left";
         }
