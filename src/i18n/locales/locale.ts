@@ -8,7 +8,8 @@ export default {
 			contact: "ارتباط باما"
 		},
 		home: {
-			welcome: "خوش آمدید"
+			welcome: "خوش آمدید",
+			dashboard: "برو به داشبورد"
 		},
 		footer: {
 			contact: "ارتباط با ما",
@@ -60,7 +61,8 @@ export default {
 			contact: "Contact"
 		},
 		home: {
-			welcome: "welcome bro"
+			welcome: "welcome bro",
+			dashboard: "Go to dasbhoard"
 		},
 		footer: {
 			contact: "Contact",
