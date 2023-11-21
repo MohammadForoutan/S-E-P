@@ -38,11 +38,15 @@ export function DashSupport() {
   return (
     <div>
       <Container>
-        <div>
-          <Button onClick={() => navigate("/dashboard/support/create")}>
-            CREATE
+        <Paper withBorder m={"md"} p={"md"}>
+          <Button
+            ff={"peyda bolder"}
+            fw={"bold"}
+            onClick={() => navigate("/dashboard/support/create")}
+          >
+            {t("create")}
           </Button>
-        </div>
+        </Paper>
         <Table striped highlightOnHover ta={"center"}>
           <Table.Thead>
             <Table.Tr>

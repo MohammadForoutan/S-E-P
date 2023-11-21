@@ -9,15 +9,17 @@ import {
 } from "@mantine/core";
 import { t } from "i18next";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function DashSupportForm() {
   const [value, _setValue] = useState("");
   const [loading, _setLoading] = useState(false);
+  const { t } = useTranslation("dashSupport");
 
   return (
     <div>
       <Paper ta={"center"}>
-        <h1>شروع یک گفت‌وگو جدید</h1>
+        <h1>{t("create")}</h1>
       </Paper>
       <Paper withBorder p={"20px"}>
         <TextInput
@@ -29,7 +31,7 @@ function DashSupportForm() {
 
         <Group mt={"8px"} grow>
           <Select
-            label={t("section")}
+            label={t("department")}
             defaultValue={"technical"}
             data={[
               { label: "فنی", value: "technical" },
@@ -38,7 +40,7 @@ function DashSupportForm() {
             allowDeselect={false}
           />
           <Select
-            label={t("level")}
+            label={t("severity")}
             defaultValue={"normal"}
             data={[
               { label: "عادی", value: "normal" },
@@ -52,15 +54,15 @@ function DashSupportForm() {
 
         <Textarea
           mt={"8px"}
-          label="پیام مربوطه"
-          description="ابتدا  کار خود را توضیح دهید و مرحله‌ای که دچار مشکل شده‌اید را با جزئیات بیشتر شرح دهید."
-          placeholder="پیام شما..."
+          label={t("message")}
+          description={t("explain")}
+          placeholder={t("yourMessage")}
           autosize
           minRows={6}
           maxRows={14}
         />
         <Button mt={"18px"} display={"block"} w={"100%"}>
-          ثبت تیکت
+          {t("submit")}
         </Button>
       </Paper>
     </div>

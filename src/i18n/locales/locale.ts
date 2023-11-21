@@ -51,7 +51,14 @@ export default {
 		},
 		dashSupport: {
 			title: "عنوان:",
-			titlePlace: "یک عنوان مناسب بنویسید."
+			titlePlace: "یک عنوان مناسب بنویسید.",
+			create: "شروع یک گفت‌وگو جدید",
+			severity: "سطح ضرورت",
+			department: "دپارتمان مربوظه",
+			message: "پیام مربوطه",
+			explain: "ابتدا کار خود را توضیح دهید و مرحله‌ای که دچار مشکل شده‌اید را با جزئیات بیشتر شرح دهید.",
+			yourMessage: "پیام شما ...",
+			submit: "شروع گفت‌وگو"
 		}
 	},
 	en_US: {
@@ -106,7 +113,14 @@ export default {
 		},
 		dashSupport: {
 			title: "Title",
-			titlePlace: "Enter a clear title"
+			titlePlace: "Enter a clear title",
+			create: "Create New Discussion",
+			severity: "Severity",
+			department: "Department",
+			message: "Your message",
+			explain: "Explain you problem in details.",
+			yourMessage: "Your Message...",
+			submit: "Start Discussion"
 		}
 	}
 };
