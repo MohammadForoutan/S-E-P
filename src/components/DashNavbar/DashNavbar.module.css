@@ -1,10 +1,14 @@
 .navbar {
-  height: rem(700px);
+  /* height: rem(700px); */
+  height: 100vh;
   width: rem(300px);
   padding: var(--mantine-spacing-md);
   display: flex;
   flex-direction: column;
   background-color: var(--mantine-color-blue-filled);
+  position: sticky;
+  top: 0;
+  overflow-y: auto;
 }
 
 .navbarMain {
