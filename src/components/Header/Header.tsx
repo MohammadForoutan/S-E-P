@@ -5,6 +5,7 @@ import classes from "./Header.module.css";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { ChangeLanguage } from "../ChangeLanguage/ChangeLanguage";
+import { ChagneScheme } from "../ChangeColorScheme/colorScheme";
 export function Header() {
   const [opened, { toggle }] = useDisclosure(false);
 
@@ -100,6 +101,7 @@ export function Header() {
           </Group>
 
           <ChangeLanguage />
+          <ChagneScheme />
 
           <Group visibleFrom="md">
             <Button variant="default" onClick={() => navigate("/auth/login")}>
