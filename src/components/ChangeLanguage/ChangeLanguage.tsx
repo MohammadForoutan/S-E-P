@@ -13,7 +13,7 @@ function ChangeLanguage() {
     if (langStore.lang === LANGS.fa_IR) {
       document.body.style.direction = "rtl";
       document.body.style.textAlign = "right";
-      Array.from(document.querySelectorAll("textarea, select, input")).forEach(
+      Array.from(document.querySelectorAll("textarea, select, input, option")).forEach(
         (element: any) => {
           element.style.direction = "rtl";
           element.style.textAlign = "right";
@@ -22,7 +22,7 @@ function ChangeLanguage() {
     } else {
       document.body.style.direction = "ltr";
       document.body.style.textAlign = "left";
-      Array.from(document.querySelectorAll("textarea, select, input")).forEach(
+      Array.from(document.querySelectorAll("textarea, select, input, option")).forEach(
         (element: any) => {
           element.style.direction = "ltr";
           element.style.textAlign = "left";
