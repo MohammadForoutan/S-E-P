@@ -7,7 +7,6 @@ import {
   TextInput,
   Textarea,
 } from "@mantine/core";
-import { t } from "i18next";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 

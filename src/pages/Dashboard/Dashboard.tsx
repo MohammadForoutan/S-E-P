@@ -1,13 +1,10 @@
 import { Flex, Stack } from "@mantine/core";
 import { DashNavbar } from "../../components/DashNavbar/DashNavbar";
 import { DashHeader } from "../../components/DashHeader/DashHeader";
-import { ReactNode } from "react";
 import { Outlet } from "react-router-dom";
 
-type Props = {
-  children?: ReactNode;
-};
-export function Dashboard({ children }: Props) {
+type Props = {};
+export function Dashboard({}: Props) {
   return (
     <Flex gap={0}>
       <DashNavbar />

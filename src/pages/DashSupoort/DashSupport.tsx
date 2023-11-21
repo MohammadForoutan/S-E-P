@@ -1,15 +1,4 @@
-import { useState } from "react";
-import {
-  Button,
-  Container,
-  Group,
-  Loader,
-  Paper,
-  Select,
-  Table,
-  TextInput,
-  Textarea,
-} from "@mantine/core";
+import { Button, Container, Paper, Table } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
