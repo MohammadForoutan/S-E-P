@@ -5,7 +5,9 @@ export default {
 			login: "ورود",
 			about: "درباره ما",
 			home: "خانه",
-			contact: "ارتباط باما"
+			contact: "ارتباط باما",
+			dark: "تیره",
+			light: "روشن"
 		},
 		home: {
 			welcome: "خوش آمدید",
@@ -58,7 +60,9 @@ export default {
 			login: "Log in",
 			about: "About",
 			home: "Home",
-			contact: "Contact"
+			contact: "Contact",
+			dark: "Dark",
+			light: "Light"
 		},
 		home: {
 			welcome: "welcome bro",

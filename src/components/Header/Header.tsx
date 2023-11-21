@@ -5,7 +5,7 @@ import classes from "./Header.module.css";
 import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { ChangeLanguage } from "../ChangeLanguage/ChangeLanguage";
-import { ChagneScheme } from "../ChangeColorScheme/colorScheme";
+import { ChagneScheme } from "../ChangeColorScheme/ColorScheme";
 export function Header() {
   const [opened, { toggle }] = useDisclosure(false);
 
