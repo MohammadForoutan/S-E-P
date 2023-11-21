@@ -7,43 +7,50 @@ import { Dashboard } from "./Dashboard/Dashboard";
 import { DashSetting } from "./DashSetting/DashSetting";
 import { DashNotification } from "./DashNotification/DashNotification";
 import { DashSupport } from "./DashSupoort/DashSupport";
+import DashSupportForm from "../components/Forms/DashSupport/DashSupportForm";
 
 export const router = createBrowserRouter([
-	{
-		path: "/",
-		element: <Home />
-	},
-	{
-		path: "/auth",
-		children: [{
-			path: "login",
-			element: <Login />
-		},
-		{
-			path: "register",
-			element: <Register />
-		}]
-	},
-	{
-		path: "/dashboard",
-		element: <Dashboard />,
-		children: [
-			{
-				path: "setting",
-				element: <DashSetting />
-			},
-			{
-				path: "notifications",
-				element: <DashNotification />
-			},
-			{
-				path: "support",
-				element: <DashSupport />
-			}
-		]
-	},
-	{
-		path: "*",
-		element: <NotFound />
-	}
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/auth",
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: <Dashboard />,
+    children: [
+      {
+        path: "setting",
+        element: <DashSetting />,
+      },
+      {
+        path: "notifications",
+        element: <DashNotification />,
+      },
+      {
+        path: "support",
+        element: <DashSupport />,
+      },
+      {
+        path: "support/create",
+        element: <DashSupportForm />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <NotFound />,
+  },
 ]);

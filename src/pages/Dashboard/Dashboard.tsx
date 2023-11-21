@@ -14,7 +14,6 @@ export function Dashboard({ children }: Props) {
       <Stack w={"100%"} justify="flex-start">
         <DashHeader />
         <Flex direction={"column"} px={13}>
-          {children}
           <Outlet />
         </Flex>
       </Stack>
