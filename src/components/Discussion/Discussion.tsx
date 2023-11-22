@@ -1,12 +1,19 @@
-import { Flex, Grid, Group, Paper } from "@mantine/core";
+import { Flex, Group, Paper } from "@mantine/core";
 import { IconUserCircle } from "@tabler/icons-react";
 import { useLangStore } from "../../stores/langStore";
 import { LANGS } from "../../i18n/locales/type";
 
 type Props = {
-  id: number;
+  fullname: string;
+  discussionId: number;
+  created_at: Date;
 };
-export default function Discussion({ id }: Props) {
+
+export default function Discussion({
+  fullname,
+  discussionId,
+  created_at,
+}: Props) {
   const langStore = useLangStore();
   return (
     <Flex direction={"column"}>
@@ -19,20 +26,20 @@ export default function Discussion({ id }: Props) {
       >
         <Group>
           <IconUserCircle size={37} color="blue" />
-          <p>محمدرضا فروتن</p>
-          <p>{id}</p>
+          <p>{fullname}</p>
+          <p>{discussionId}</p>
         </Group>
         <Group>
           <p>
             {langStore.lang === LANGS.en_US
-              ? new Date().toLocaleDateString("us-en", {
+              ? new Date(created_at).toLocaleDateString("us-en", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
                   hour: "numeric",
                   minute: "2-digit",
                 })
-              : new Date().toLocaleDateString("fa-ir", {
+              : new Date(created_at).toLocaleDateString("fa-ir", {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
