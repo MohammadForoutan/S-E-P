@@ -6,7 +6,11 @@ const DashDiscussion = () => {
     <div>
       <Container size={"rem"}>
         <div>
-          <Discussion id={2} />
+          <Discussion
+            discussionId={2}
+            created_at={new Date()}
+            fullname="محمد فروتن"
+          />
         </div>
       </Container>
     </div>
