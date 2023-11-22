@@ -1,14 +1,22 @@
-import { Button, Container, Paper, Table } from "@mantine/core";
+import { Button, Container, Group, Paper, Table } from "@mantine/core";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 export function DashSupport() {
+  const ActionBtn = function () {
+    return (
+      <Group gap={6} justify="center">
+        <Button bg={"red"}>{t("delete")}</Button>
+        <Button bg={"green"}>{t("view")}</Button>
+      </Group>
+    );
+  };
   const elements = [
-    { position: 6, mass: 12.011, symbol: "C", name: "Carbon" },
-    { position: 7, mass: 14.007, symbol: "N", name: "Nitrogen" },
-    { position: 39, mass: 88.906, symbol: "Y", name: "Yttrium" },
-    { position: 56, mass: 137.33, symbol: "Ba", name: "Barium" },
-    { position: 58, mass: 140.12, symbol: "Ce", name: "Cerium" },
+    { position: 6, mass: <ActionBtn />, symbol: "C", name: "Carbon" },
+    { position: 7, mass: <ActionBtn />, symbol: "N", name: "Nitrogen" },
+    { position: 39, mass: <ActionBtn />, symbol: "Y", name: "Yttrium" },
+    { position: 56, mass: <ActionBtn />, symbol: "Ba", name: "Barium" },
+    { position: 58, mass: <ActionBtn />, symbol: "Ce", name: "Cerium" },
   ];
 
   const rows = elements.map((element) => (
@@ -39,10 +47,10 @@ export function DashSupport() {
         <Table striped highlightOnHover ta={"center"}>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th ta={"center"}>Element position</Table.Th>
-              <Table.Th ta={"center"}>Element name</Table.Th>
-              <Table.Th ta={"center"}>Symbol</Table.Th>
-              <Table.Th ta={"center"}>Atomic mass</Table.Th>
+              <Table.Th ta={"center"}>{t("discussion_id")}</Table.Th>
+              <Table.Th ta={"center"}>{t("full_name")}</Table.Th>
+              <Table.Th ta={"center"}>{t("severity")}</Table.Th>
+              <Table.Th ta={"center"}>{t("action")}</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>{rows}</Table.Tbody>

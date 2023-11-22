@@ -58,7 +58,12 @@ export default {
 			message: "پیام مربوطه",
 			explain: "ابتدا کار خود را توضیح دهید و مرحله‌ای که دچار مشکل شده‌اید را با جزئیات بیشتر شرح دهید.",
 			yourMessage: "پیام شما ...",
-			submit: "شروع گفت‌وگو"
+			submit: "شروع گفت‌وگو",
+			discussion_id: "شماره گفت‌وگو",
+			full_name: "نام ‌کابر",
+			action: "عملیات‌ها",
+			delete: "حذف",
+			view: "مشاهده"
 		}
 	},
 	en_US: {
@@ -120,7 +125,12 @@ export default {
 			message: "Your message",
 			explain: "Explain you problem in details.",
 			yourMessage: "Your Message...",
-			submit: "Start Discussion"
+			submit: "Start Discussion",
+			discussion_id: "Discussion ID",
+			full_name: "Username",
+			action: "Actions",
+			delete: "Delte",
+			view: "View"
 		}
 	}
 };

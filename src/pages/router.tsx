@@ -8,6 +8,7 @@ import { DashSetting } from "./DashSetting/DashSetting";
 import { DashNotification } from "./DashNotification/DashNotification";
 import { DashSupport } from "./DashSupoort/DashSupport";
 import DashSupportForm from "../components/Forms/DashSupport/DashSupportForm";
+import { DashDiscussion } from "./DashDiscussion/DashDiscussion";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ export const router = createBrowserRouter([
       {
         path: "support/create",
         element: <DashSupportForm />,
+      },
+      {
+        path: "support/discussion/:id",
+        element: <DashDiscussion />,
       },
     ],
   },

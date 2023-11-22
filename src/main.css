@@ -23,7 +23,8 @@ body,
 }
 
 h1,
-h2 {
+h2,
+b {
   font-family: "peyda bolder" !important;
   font-weight: bold !important;
 }
