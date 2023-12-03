@@ -13,21 +13,21 @@ function ChangeLanguage() {
     if (langStore.lang === LANGS.fa_IR) {
       document.body.style.direction = "rtl";
       document.body.style.textAlign = "right";
-      Array.from(document.querySelectorAll("textarea, select, input, option")).forEach(
-        (element: any) => {
-          element.style.direction = "rtl";
-          element.style.textAlign = "right";
-        }
-      );
+      Array.from(
+        document.querySelectorAll("textarea, select, input, option")
+      ).forEach((element: any) => {
+        element.style.direction = "rtl";
+        element.style.textAlign = "right !important";
+      });
     } else {
       document.body.style.direction = "ltr";
-      document.body.style.textAlign = "left";
-      Array.from(document.querySelectorAll("textarea, select, input, option")).forEach(
-        (element: any) => {
-          element.style.direction = "ltr";
-          element.style.textAlign = "left";
-        }
-      );
+      document.body.style.textAlign = "left !important";
+      Array.from(
+        document.querySelectorAll("textarea, select, input, option")
+      ).forEach((element: any) => {
+        element.style.direction = "ltr";
+        element.style.textAlign = "right !important";
+      });
     }
   }, [langStore.lang, i18n]);
 

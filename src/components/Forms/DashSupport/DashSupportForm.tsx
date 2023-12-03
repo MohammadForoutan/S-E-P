@@ -33,19 +33,19 @@ function DashSupportForm() {
             label={t("department")}
             defaultValue={"technical"}
             data={[
-              { label: "فنی", value: "technical" },
-              { label: "مالی", value: "financial" },
+              { label: t("technical"), value: "technical" },
+              { label: t("financial"), value: "financial" },
             ]}
             allowDeselect={false}
           />
           <Select
             label={t("severity")}
-            defaultValue={"normal"}
+            defaultValue={"low"}
             data={[
-              { label: "عادی", value: "normal" },
-              { label: "متوسط", value: "medium" },
-              { label: "زیاد", value: "high" },
-              { label: "ضروری", value: "emergency" },
+              { label: t("low"), value: "low" },
+              { label: t("med"), value: "medium" },
+              { label: t("high"), value: "high" },
+              { label: t("emergency"), value: "emergency" },
             ]}
             allowDeselect={false}
           />
