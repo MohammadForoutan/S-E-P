@@ -9,6 +9,7 @@ import { DashNotification } from "./DashNotification/DashNotification";
 import { DashSupport } from "./DashSupoort/DashSupport";
 import DashSupportForm from "../components/Forms/DashSupport/DashSupportForm";
 import { DashDiscussion } from "./DashDiscussion/DashDiscussion";
+import { DashUser } from "./DashUser/DashUser";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard />,
     children: [
+      {
+        path: "user",
+        element: <DashUser />,
+      },
       {
         path: "setting",
         element: <DashSetting />,

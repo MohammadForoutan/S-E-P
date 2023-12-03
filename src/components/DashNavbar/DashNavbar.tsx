@@ -6,6 +6,7 @@ import {
   IconSettings,
   IconLogout,
   IconHelpCircle,
+  IconUser,
 } from "@tabler/icons-react";
 import classes from "./DashNavbar.module.css";
 import { Link } from "react-router-dom";
@@ -17,7 +18,7 @@ const data = [
     label: "notifications",
     icon: IconBellRinging,
   },
-  // { link: '/dashboard/billing', label: 'billing', icon: IconReceipt2 },
+  { link: "/dashboard/user", label: "users", icon: IconUser },
   // { link: '/dashboard/security', label: 'security', icon: IconFingerprint },
   // { link: '', label: 'SSH Keys', icon: IconKey },
   // { link: '', label: 'Databases', icon: IconDatabaseImport },
