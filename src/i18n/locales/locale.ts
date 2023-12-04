@@ -79,6 +79,7 @@ export default {
       action: "عملیات‌ها",
       delete: "حذف",
       view: "مشاهده",
+      delete_user: "کاربر موردنظر با موفقیت حذف شد.",
     },
   },
   en_US: {
@@ -157,6 +158,10 @@ export default {
     dashUser: {
       user_id: "User ID",
       username: "Username",
+      action: "Actions",
+      delete: "Delete",
+      view: "View",
+      delete_user: "User deleted successfully.",
     },
   },
 };

@@ -1,5 +1,6 @@
 import { Button, Container, Group, Table } from "@mantine/core";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 // import { useNavigate } from "react-router-dom";
 
 function DashUser() {
@@ -7,9 +8,14 @@ function DashUser() {
   //   const navigate = useNavigate();
 
   const ActionBtn = function () {
+    const deleteAction = () => {
+      toast.error(t("delete_user"), {});
+    };
     return (
       <Group gap={6} justify="center">
-        <Button bg={"red"}>{t("delete")}</Button>
+        <Button onClick={deleteAction} bg={"red"}>
+          {t("delete")}
+        </Button>
         <Button bg={"green"}>{t("view")}</Button>
       </Group>
     );
