@@ -26,7 +26,7 @@ function ChangeLanguage() {
         document.querySelectorAll("textarea, select, input, option")
       ).forEach((element: any) => {
         element.style.direction = "ltr";
-        element.style.textAlign = "right !important";
+        element.style.textAlign = "left !important";
       });
     }
   }, [langStore.lang, i18n]);

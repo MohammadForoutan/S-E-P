@@ -15,6 +15,25 @@ export default function Discussion({
   created_at,
 }: Props) {
   const langStore = useLangStore();
+  type TMessage = { created_at: Date; content: string, me: boolean};
+  const Message = ({ created_at, content, me }: TMessage) => {
+    return (
+      <Paper mb={"5"}  py={"3"} w={"57%"} px={"8"} bg={me ? "green": "grape"} mr={me ? "auto": ""}>
+        <p>{content}</p>
+        <span>
+          {langStore.lang === LANGS.en_US
+            ? new Date(created_at).toLocaleDateString("en-us", {
+                minute: "2-digit",
+                hour: "2-digit",
+              })
+            : new Date(created_at).toLocaleDateString("fa-ir", {
+                minute: "2-digit",
+                hour: "2-digit",
+              })}
+        </span>
+      </Paper>
+    );
+  };
   return (
     <Flex direction={"column"}>
       <Paper
@@ -51,8 +70,13 @@ export default function Discussion({
       </Paper>
 
       <div>
-        <Paper bg={"green"} h={900}></Paper>
-        <main>tickets array here - like chats and messages</main>
+        {/* <Paper bg={"green"} h={900}></Paper> */}
+        <main>
+          <Message me={true} content="Random text" created_at={new Date()} />
+          <Message me={false} content="Random text" created_at={new Date()} />
+          <Message me={true} content="Random text" created_at={new Date()} />
+          <Message me={false} content="Random text" created_at={new Date()} />
+        </main>
       </div>
 
       <Paper
