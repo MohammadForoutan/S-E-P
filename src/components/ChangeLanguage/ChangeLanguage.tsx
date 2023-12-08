@@ -3,8 +3,12 @@ import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useLangStore } from "../../stores/langStore";
 import { LANGS } from "../../i18n/locales/type";
+import { IconLanguage } from "@tabler/icons-react";
 
-function ChangeLanguage() {
+type Props = {
+  width?: string;
+}
+function ChangeLanguage({width = "100px"}: Props) {
   const { i18n } = useTranslation(["menu"]);
   const langStore = useLangStore();
 
@@ -40,11 +44,13 @@ function ChangeLanguage() {
       <Select
         defaultValue={langStore.lang}
         value={langStore.lang}
-        w={"200px"}
+        w={width}
         data={[
-          { label: "فارسی", value: "fa_IR" },
+          { label: "فارسی", value: "fa_IR", },
           { label: "English", value: "en_US" },
         ]}
+        rightSection={langStore.lang === "en_US" && <IconLanguage />}
+        leftSection={langStore.lang === "fa_IR" && <IconLanguage />}
         onChange={changeLang}
         allowDeselect={false}
       />

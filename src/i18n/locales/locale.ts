@@ -12,6 +12,13 @@ export default {
     home: {
       welcome: "خوش آمدید",
       dashboard: "برو به داشبورد",
+      heroHeading1: "انجام خودکار",
+      heroHeading2: "کد ریویو(code review)",
+      heroHeading3: "برای هر استک نرم‌افزاری",
+      heroHeading4: "به کمک هوش مصنوعی",
+      bookDemo: "رزرو دمو",
+      purchaseLicense: "پرداخت لایسنس",
+      heroDesc: "با همراهی هوش مصنوعی نرم افزار قابل اعتمادتری بسازید. هوش مصنوعی همچنین برای شناسایی توسعه دهندگان تنبلی که هیچ کاری انجام نمی دهند و فقط در توییتر شکایت می کنند، آموزش دیده است."
     },
     footer: {
       contact: "ارتباط با ما",
@@ -95,6 +102,12 @@ export default {
     home: {
       welcome: "welcome bro",
       dashboard: "Go to dasbhoard",
+      heroHeading1: "Automated AI",
+      heroHeading2: "code reviews",
+      heroHeading3: "for any stack",
+      bookDemo: "Book a demo",
+      purchaseLicense: "Purchace a License",
+      heroDesc: "Build more reliable software with AI companion. AI is also trained to detect lazy developers who do nothing and just complain on Twitter."
     },
     footer: {
       contact: "Contact",
