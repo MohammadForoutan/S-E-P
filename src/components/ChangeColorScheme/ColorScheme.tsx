@@ -2,7 +2,7 @@ import { Select } from "@mantine/core";
 import { SCHEME, useSchemeStore } from "../../stores/themeStore";
 import { useTranslation } from "react-i18next";
 
-export function ChagneScheme() {
+export function ChangeScheme() {
   const { t } = useTranslation("menu");
 
   const updateScheme = (scheme: SCHEME) => {
@@ -20,7 +20,7 @@ export function ChagneScheme() {
           { label: t("dark"), value: "dark" },
           { label: t("light"), value: "light" },
         ]}
-        onChange={updateScheme}
+        onChange={() => updateScheme}
         allowDeselect={false}
       />
     </div>
