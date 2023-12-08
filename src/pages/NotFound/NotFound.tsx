@@ -23,7 +23,7 @@ export function NotFound() {
                             {t("backBtn")}
                         </Button>
                     </div>
-                    <Image src={image} className={classes.desktopImage} />
+                    <Image src={image} className={classes.desktopImage} style={{ mixBlendMode: "multiply"}} />
                 </SimpleGrid>
             </Container>
         </HomeLayout>
