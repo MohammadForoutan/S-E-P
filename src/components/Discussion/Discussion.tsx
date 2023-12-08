@@ -2,6 +2,7 @@ import { Flex, Group, Paper } from "@mantine/core";
 import { IconUserCircle } from "@tabler/icons-react";
 import { useLangStore } from "../../stores/langStore";
 import { LANGS } from "../../i18n/locales/type";
+import { DiscussionMessageForm } from "../Forms/DiscussionMessage/DiscussionMessage";
 
 type Props = {
   fullname: string;
@@ -15,10 +16,17 @@ export default function Discussion({
   created_at,
 }: Props) {
   const langStore = useLangStore();
-  type TMessage = { created_at: Date; content: string, me: boolean};
+  type TMessage = { created_at: Date; content: string; me: boolean };
   const Message = ({ created_at, content, me }: TMessage) => {
     return (
-      <Paper mb={"5"}  py={"3"} w={"57%"} px={"8"} bg={me ? "green": "grape"} mr={me ? "auto": ""}>
+      <Paper
+        mb={"5"}
+        py={"3"}
+        w={"57%"}
+        px={"8"}
+        bg={me ? "green" : "grape"}
+        mr={me ? "auto" : ""}
+      >
         <p>{content}</p>
         <span>
           {langStore.lang === LANGS.en_US
@@ -79,15 +87,8 @@ export default function Discussion({
         </main>
       </div>
 
-      <Paper
-        withBorder
-        mt={"auto"}
-        bg={"gray"}
-        p={12}
-        pos={"sticky"}
-        w={"100%"}
-      >
-        <div>ChatBox Component here</div>
+      <Paper mt={"30px"} mb={"40px"}>
+        <DiscussionMessageForm />
       </Paper>
     </Flex>
   );
