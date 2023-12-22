@@ -18,7 +18,8 @@ export default {
       heroHeading4: "به کمک هوش مصنوعی",
       bookDemo: "رزرو دمو",
       purchaseLicense: "پرداخت لایسنس",
-      heroDesc: "با همراهی هوش مصنوعی نرم افزار قابل اعتمادتری بسازید. هوش مصنوعی همچنین برای شناسایی توسعه دهندگان تنبلی که هیچ کاری انجام نمی دهند و فقط در توییتر شکایت می کنند، آموزش دیده است."
+      heroDesc:
+        "با همراهی هوش مصنوعی نرم افزار قابل اعتمادتری بسازید. هوش مصنوعی همچنین برای شناسایی توسعه دهندگان تنبلی که هیچ کاری انجام نمی دهند و فقط در توییتر شکایت می کنند، آموزش دیده است.",
     },
     footer: {
       contact: "ارتباط با ما",
@@ -29,11 +30,17 @@ export default {
     auth: {
       welcome: "خوش آمدید",
       email: "ایمیل",
+      first_name: "نام",
+      first_name_place: "علیرضا",
+      last_name: "نام خانوادگی",
+      last_name_place: "رستگار",
+      confirm_password: "تکرار رمز عبور",
       password: "رمز عبور",
       remember: "ذخیره شود",
       forget: "فراموشی رمز؟",
       login: "ورود",
       register: "ثبت نام",
+      username: "نام کاربری",
       dontHaveAccount: "حساب کاربری ندارید؟",
       haveAccount: "حساب دارید؟",
       loginAccount: "وارد حساب خود شوید",
@@ -107,7 +114,8 @@ export default {
       heroHeading3: "for any stack",
       bookDemo: "Book a demo",
       purchaseLicense: "Purchace a License",
-      heroDesc: "Build more reliable software with AI companion. AI is also trained to detect lazy developers who do nothing and just complain on Twitter."
+      heroDesc:
+        "Build more reliable software with AI companion. AI is also trained to detect lazy developers who do nothing and just complain on Twitter.",
     },
     footer: {
       contact: "Contact",
@@ -118,6 +126,12 @@ export default {
     auth: {
       welcome: "Welcome",
       email: "Email",
+      first_name: "First Name",
+      first_name_place: "Alireza",
+      last_name: "Last Name",
+      last_name_place: "Rastegar",
+      username: "Username",
+      confirm_password: "Confirm Password",
       password: "Password",
       remember: "Remember me",
       forget: "Forget password",
