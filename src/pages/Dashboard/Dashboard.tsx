@@ -3,8 +3,7 @@ import { DashNavbar } from "../../components/DashNavbar/DashNavbar";
 import { DashHeader } from "../../components/DashHeader/DashHeader";
 import { Outlet } from "react-router-dom";
 
-type Props = {};
-export function Dashboard({}: Props) {
+export function Dashboard() {
   return (
     <Flex gap={0}>
       <DashNavbar />

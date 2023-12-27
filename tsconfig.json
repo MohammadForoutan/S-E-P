@@ -17,8 +17,12 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@lib/validation": ["./lib/validation/index.ts"],
+      "@lib/http": ["./lib/http/index.ts"],
+    }
   },
-  "include": ["src"],
+  // "include": ["src", "lib"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

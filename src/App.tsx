@@ -10,6 +10,9 @@ import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useLangStore } from "./stores/langStore";
 import { LANGS } from "./i18n/locales/type";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const schemeStore = useSchemeStore();
@@ -19,25 +22,27 @@ export default function App() {
     console.log(schemeStore.scheme);
   }, [schemeStore.scheme]);
   return (
-    <DirectionProvider initialDirection="rtl" detectDirection={true}>
-      <MantineProvider
-        defaultColorScheme={"dark"}
-        forceColorScheme={schemeStore.scheme}
-        theme={theme}
-      >
-        <ToastContainer
-          rtl={langStore.lang === LANGS.fa_IR}
-          position="bottom-left"
-          toastStyle={{
-            textAlign: langStore.lang !== LANGS.fa_IR ? "left" : "right",
-          }}
-          transition={Zoom}
-          // limit={6}
-          autoClose={1500}
-          theme={schemeStore.scheme}
-        />
-        <RouterProvider router={router} />
-      </MantineProvider>
-    </DirectionProvider>
+    <QueryClientProvider client={queryClient}>
+      <DirectionProvider initialDirection="rtl" detectDirection={true}>
+        <MantineProvider
+          defaultColorScheme={"dark"}
+          forceColorScheme={schemeStore.scheme}
+          theme={theme}
+        >
+          <ToastContainer
+            rtl={langStore.lang === LANGS.fa_IR}
+            position="bottom-left"
+            toastStyle={{
+              textAlign: langStore.lang !== LANGS.fa_IR ? "left" : "right",
+            }}
+            transition={Zoom}
+            // limit={6}
+            autoClose={1500}
+            theme={schemeStore.scheme}
+          />
+          <RouterProvider router={router} />
+        </MantineProvider>
+      </DirectionProvider>
+    </QueryClientProvider>
   );
 }

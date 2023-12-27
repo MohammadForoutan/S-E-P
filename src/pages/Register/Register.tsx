@@ -16,11 +16,28 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { LANGS } from "../../i18n/locales/type";
 import { useLangStore } from "../../stores/langStore";
+import { useMutation } from "@tanstack/react-query";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { RegisterData, registerSchema } from "@lib/validation";
 
 export function Register() {
   const { t } = useTranslation("auth");
   const navigate = useNavigate();
   const langStore = useLangStore();
+
+  // const {} = useMutation({ mutationFn: "", mutationKey: ["Register"] });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterData>({
+    resolver: zodResolver(registerSchema),
+  });
+
+  const submitRegisterForm = (data: RegisterData) => {
+    console.log({ data, isValid: true });
+  };
 
   return (
     <HomeLayout>
@@ -52,51 +69,61 @@ export function Register() {
           </Text>
 
           <Paper withBorder shadow="md" p={30} mt={18} radius="md">
-            <TextInput
-              label={t("email")}
-              placeholder="you@mantine.dev"
-              required
-            />
-            <TextInput
-              label={t("first_name")}
-              placeholder={t("first_name_place")}
-              required
-              mt={"md"}
-            />
-            <TextInput
-              label={t("last_name")}
-              placeholder={t("last_name_place")}
-              required
-              mt={"md"}
-            />
-            <TextInput
-              label={t("username")}
-              pattern="[A-Za-z0-9]"
-              placeholder={
-                langStore.lang === LANGS.fa_IR ? "Ali_Rastegar" : "Username"
-              }
-              required
-              mt="md"
-            />
-            <PasswordInput
-              label={t("password")}
-              placeholder={t("password")}
-              required
-              mt="md"
-            />
-            <PasswordInput
-              label={t("confirm_password")}
-              placeholder={t("confirm_password")}
-              required
-              mt="md"
-            />
+            <form onSubmit={handleSubmit(submitRegisterForm)}>
+              <TextInput
+                label={t("email")}
+                placeholder="you@mantine.dev"
+                error={!!errors.email && errors.email.message}
+                {...register("email")}
+              />
+              <TextInput
+                label={t("first_name")}
+                placeholder={t("first_name_place")}
+                mt={"md"}
+                error={!!errors.first_name && errors.first_name.message}
+                {...register("first_name")}
+              />
+              <TextInput
+                label={t("last_name")}
+                placeholder={t("last_name_place")}
+                mt={"md"}
+                error={!!errors.last_name && errors.last_name.message}
+                {...register("last_name")}
+              />
+              <TextInput
+                label={t("username")}
+                placeholder={
+                  langStore.lang === LANGS.fa_IR ? "Ali_Rastegar" : "Username"
+                }
+                error={!!errors.username && errors.username.message}
+                mt="md"
+                {...register("username")}
+              />
+              <PasswordInput
+                label={t("password")}
+                placeholder={t("password")}
+                mt="md"
+                error={!!errors.password && errors.password.message}
+                {...register("password")}
+              />
+              <PasswordInput
+                label={t("confirm_password")}
+                placeholder={t("confirm_password")}
+                mt="md"
+                error={
+                  !!errors.password_confirmation &&
+                  errors.password_confirmation.message
+                }
+                {...register("password_confirmation")}
+              />
 
-            <Group mt="lg">
-              <Checkbox label={t("remember")} />
-            </Group>
-            <Button fullWidth mt="xl">
-              {t("register")}
-            </Button>
+              <Group mt="lg">
+                <Checkbox label={t("remember")} />
+              </Group>
+              <Button fullWidth mt="xl" type="submit">
+                {t("register")}
+              </Button>
+            </form>
           </Paper>
         </Container>
       </div>
