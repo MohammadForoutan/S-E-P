@@ -14,11 +14,22 @@ import classes from "./Login.module.css";
 import { HomeLayout } from "../Layouts/HomeLayout";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { LoginData, LoginSchema } from "@lib/validation";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export function Login() {
   const { t } = useTranslation("auth");
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginData>({ resolver: zodResolver(LoginSchema) });
 
+  const submitLoginForm = (data: LoginData) => {
+    console.log({ data, isValid: true });
+  };
   return (
     <HomeLayout>
       <div className={classes.bg}>
@@ -49,26 +60,31 @@ export function Login() {
           </Text>
 
           <Paper withBorder shadow="md" p={30} mt={18} radius="md">
-            <TextInput
-              label={t("email")}
-              placeholder="you@mantine.dev"
-              required
-            />
-            <PasswordInput
-              label={t("password")}
-              placeholder={t("password")}
-              required
-              mt="md"
-            />
-            <Group justify="space-between" mt="lg">
-              <Checkbox label={t("remember")} />
-              <Anchor component="button" size="sm" fw={800}>
-                {t("forget")}
-              </Anchor>
-            </Group>
-            <Button fullWidth mt="xl">
-              {t("login")}
-            </Button>
+            <form onSubmit={handleSubmit(submitLoginForm)}>
+              <TextInput
+                label={t("username")}
+                placeholder={t("username_place")}
+                error={!!errors.username && errors.username.message}
+                {...register("username")}
+              />
+              <PasswordInput
+                label={t("password")}
+                placeholder={t("password")}
+                required
+                mt="md"
+                error={!!errors.password && errors.password.message}
+                {...register("password")}
+              />
+              <Group justify="space-between" mt="lg">
+                <Checkbox label={t("remember")} />
+                <Anchor component="button" size="sm" fw={800}>
+                  {t("forget")}
+                </Anchor>
+              </Group>
+              <Button fullWidth mt="xl" type="submit">
+                {t("login")}
+              </Button>
+            </form>
           </Paper>
         </Container>
       </div>

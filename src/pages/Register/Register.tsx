@@ -92,9 +92,7 @@ export function Register() {
               />
               <TextInput
                 label={t("username")}
-                placeholder={
-                  langStore.lang === LANGS.fa_IR ? "Ali_Rastegar" : "Username"
-                }
+                placeholder={t("username_place")}
                 error={!!errors.username && errors.username.message}
                 mt="md"
                 {...register("username")}
@@ -116,7 +114,6 @@ export function Register() {
                 }
                 {...register("password_confirmation")}
               />
-
               <Group mt="lg">
                 <Checkbox label={t("remember")} />
               </Group>
