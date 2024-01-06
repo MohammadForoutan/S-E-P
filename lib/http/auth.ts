@@ -1,10 +1,10 @@
 import { RegisterData } from "..";
 import { httpClient } from "./base";
 
-const httpRegister = (data: RegisterData) => {
-  return httpClient.post("/auth/register", { data });
+export const httpRegister = (data: RegisterData) => {
+  return httpClient.post("/accounts/register/",  data );
 };
 
-const httpLogin = (data: RegisterData) => {
-  return httpClient.post("/auth/login", { data });
+export const httpLogin = (data: RegisterData) => {
+  return httpClient.post("/accounts/login/",  data );
 };

@@ -20,6 +20,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterData, registerSchema } from "@lib/validation";
+import { httpRegister } from "../../../lib";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 export function Register() {
   const { t } = useTranslation("auth");
@@ -37,7 +40,21 @@ export function Register() {
 
   const submitRegisterForm = (data: RegisterData) => {
     console.log({ data, isValid: true });
+    httpRegister(data)
+    toast.success(' ثبت نام موفیت آمیز بود شیطون', {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      // progress: undefined,
+      theme: "dark",
+      });
+    navigate("/auth/login")
   };
+
+
 
   return (
     <HomeLayout>

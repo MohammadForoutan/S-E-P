@@ -17,6 +17,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoginData, LoginSchema } from "@lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { httpLogin } from "../../../lib";
+import { toast } from "react-toastify";
 
 export function Login() {
   const { t } = useTranslation("auth");
@@ -27,8 +29,30 @@ export function Login() {
     formState: { errors },
   } = useForm<LoginData>({ resolver: zodResolver(LoginSchema) });
 
-  const submitLoginForm = (data: LoginData) => {
+  const submitLoginForm = async (data: LoginData) => {
     console.log({ data, isValid: true });
+    try {
+      const res = await httpLogin(data)
+      localStorage.setItem("access" , res.data.access)
+      localStorage.setItem("refresh" , res.data.refresh)
+      toast.success('  ورود موفیت آمیز بود شیطون', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        // progress: undefined,
+        theme: "dark",
+        });
+    } catch (error) {
+      toast.error(' کاربری یافت نشد', {
+        position: "top-right",
+        autoClose: 3000,
+        // progress: undefined,
+        theme: "dark",
+        });
+    }
   };
   return (
     <HomeLayout>

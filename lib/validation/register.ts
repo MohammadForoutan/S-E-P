@@ -11,7 +11,7 @@ export type RegisterData = {
 
 export const registerSchema: ZodType<RegisterData> = z
   .object({
-    username: z.string(),
+    username: z.string().min(1,"اجباری"),
     first_name: z.string(),
     last_name: z.string(),
     password: z.string().min(6),

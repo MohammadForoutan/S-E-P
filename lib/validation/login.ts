@@ -6,6 +6,6 @@ export type LoginData = {
 };
 
 export const LoginSchema: ZodType<LoginData> = z.object({
-  username: z.string(),
+  username: z.string().min(1),
   password: z.string().min(6),
 });
