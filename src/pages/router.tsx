@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, redirect } from "react-router-dom";
 import { Login } from "./Login/Login";
 import { Home } from "./Home/Home";
 import { NotFound } from "./NotFound/NotFound";
@@ -10,6 +10,25 @@ import { DashSupport } from "./DashSupoort/DashSupport";
 import DashSupportForm from "../components/Forms/DashSupport/DashSupportForm";
 import { DashDiscussion } from "./DashDiscussion/DashDiscussion";
 import { DashUser } from "./DashUser/DashUser";
+import { useUserStore } from "../stores";
+
+function loginLoader() {
+  const isAuth = useUserStore.getState().isAuthenticated;
+
+  if (isAuth === true) {
+    return redirect("/");
+  }
+  return null;
+}
+
+function authLoader() {
+  const isAuth = useUserStore.getState().isAuthenticated;
+
+  if (isAuth !== true) {
+    return redirect("/auth/login");
+  }
+  return null;
+}
 
 export const router = createBrowserRouter([
   {
@@ -21,10 +40,12 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "login",
+        loader: loginLoader,
         element: <Login />,
       },
       {
         path: "register",
+        loader: loginLoader,
         element: <Register />,
       },
     ],
@@ -32,6 +53,7 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <Dashboard />,
+    loader: authLoader,
     children: [
       {
         path: "user",

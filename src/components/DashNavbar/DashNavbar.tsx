@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Group, Code, Box } from "@mantine/core";
+import { Group, Code, Box, Button } from "@mantine/core";
 import {
   IconBellRinging,
   IconKey,
@@ -9,8 +9,11 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import classes from "./DashNavbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { Logo } from "../Logo/Logo";
+import { useUserStore } from "../../stores";
+import { toast } from "react-toastify";
 
 const data = [
   {
@@ -28,9 +31,17 @@ const data = [
 ];
 
 export function DashNavbar() {
+  const { t } = useTranslation(["dashboardNav"]);
   const [active, setActive] = useState("notifications");
 
-  const { t } = useTranslation(["dashboardNav"]);
+  const navigate = useNavigate();
+
+  const userStore = useUserStore();
+  const handleLogout = () => {
+    userStore.logout();
+    toast.info(t("logout_message"));
+    navigate("/");
+  };
 
   const links = data.map((item) => (
     <Link
@@ -52,7 +63,7 @@ export function DashNavbar() {
     <nav className={classes.navbar}>
       <div className={classes.navbarMain}>
         <Group className={classes.header} justify="space-between">
-          <IconKey size={28} style={{ color: "white" }} />
+          <Logo />
           <Code fw={700} className={classes.version}>
             v3.1.2
           </Code>
@@ -67,10 +78,10 @@ export function DashNavbar() {
                 </a> */}
 
         <Box bg={"red"}>
-          <Link to="/" className={classes.logout}>
+          <span onClick={handleLogout} className={classes.logout}>
             <IconLogout className={classes.linkIcon} stroke={1.5} />
             <span>{t("logout")}</span>
-          </Link>
+          </span>
         </Box>
       </div>
     </nav>

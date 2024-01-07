@@ -19,6 +19,7 @@ import { LoginData, LoginSchema } from "@lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { httpLogin } from "../../../lib";
 import { toast } from "react-toastify";
+import { useUserStore } from "../../stores";
 
 export function Login() {
   const { t } = useTranslation("auth");
@@ -28,30 +29,26 @@ export function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginData>({ resolver: zodResolver(LoginSchema) });
+  const userStore = useUserStore();
 
   const submitLoginForm = async (data: LoginData) => {
     console.log({ data, isValid: true });
     try {
-      const res = await httpLogin(data)
-      localStorage.setItem("access" , res.data.access)
-      localStorage.setItem("refresh" , res.data.refresh)
-      toast.success('  ورود موفیت آمیز بود شیطون', {
-        position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        // progress: undefined,
-        theme: "dark",
-        });
+      const res = await httpLogin(data);
+
+      userStore.setIsAuthenticated(true);
+      userStore.setAccessToken(res.data.access);
+      userStore.setRefreshToken(res.data.refresh);
+
+      toast.success(t("success_login"));
+      navigate("/");
     } catch (error) {
-      toast.error(' کاربری یافت نشد', {
+      toast.error(t("invalid_credentials"), {
         position: "top-right",
         autoClose: 3000,
         // progress: undefined,
         theme: "dark",
-        });
+      });
     }
   };
   return (

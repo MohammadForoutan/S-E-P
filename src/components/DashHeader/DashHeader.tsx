@@ -3,6 +3,7 @@ import { useDisclosure } from "@mantine/hooks";
 import { IconChevronDown } from "@tabler/icons-react";
 import classes from "./DashHeader.module.css";
 import { ChangeLanguage } from "../ChangeLanguage/ChangeLanguage";
+import { ChangeScheme } from "../ChangeColorScheme/ColorScheme";
 
 const links: any = [
   //   { link: "/about", label: "Features" },
@@ -82,6 +83,7 @@ export function DashHeader() {
           <Group gap={5} visibleFrom="sm">
             {items}
             <ChangeLanguage />
+            <ChangeScheme />
           </Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
         </div>

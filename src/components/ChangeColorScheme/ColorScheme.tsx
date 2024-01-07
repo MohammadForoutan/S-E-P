@@ -7,7 +7,7 @@ import { IconMoon, IconSun } from "@tabler/icons-react";
 export function ChangeScheme() {
   const langStore = useLangStore();
   const schemeStore = useSchemeStore();
-  const { t } = useTranslation("menu");
+  const { t } = useTranslation(["menu"]);
 
   const updateScheme = (scheme: any) => {
     schemeStore.updateScheme(scheme);

@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { createJSONStorage, persist } from "zustand/middleware";
+import { StateCreator, create } from "zustand";
+import { PersistOptions, createJSONStorage, persist } from "zustand/middleware";
 
 export enum SCHEME {
   dark = "dark",
@@ -12,8 +12,15 @@ type Action = {
   updateScheme: (scheme: State["scheme"]) => void;
 };
 
-export const useSchemeStore = create<Action & State>()(
-  persist(
+type SchemaState = State & Action;
+
+type MyPersist = (
+  config: StateCreator<SchemaState>,
+  options: PersistOptions<SchemaState>
+) => StateCreator<SchemaState>;
+
+export const useSchemeStore = create<SchemaState>(
+  (persist as MyPersist)(
     (set, _) => ({
       scheme: SCHEME.dark,
       updateScheme: (scheme: SCHEME) => set(() => ({ scheme })),

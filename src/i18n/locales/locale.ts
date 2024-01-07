@@ -1,6 +1,7 @@
 export default {
   fa_IR: {
     menu: {
+      dashboard: "داشبورد",
       register: "ثبت نام",
       login: "ورود",
       about: "درباره ما",
@@ -11,7 +12,7 @@ export default {
     },
     home: {
       welcome: "خوش آمدید",
-      dashboard: "برو به داشبورد",
+      dashboard: "داشبورد",
       heroHeading1: "انجام خودکار",
       heroHeading2: "کد ریویو(code review)",
       heroHeading3: "برای هر استک نرم‌افزاری",
@@ -28,6 +29,9 @@ export default {
       about: "درباره ما",
     },
     auth: {
+      success_register: "ثبت‌نام موفقیت آمیز بود.",
+      success_login: "ورود موفقیت آمیز بود",
+      invalid_credentials: "نام‌کاربری/ایمیل یا رمزعبور اشتباه است",
       welcome: "خوش آمدید",
       email: "ایمیل",
       first_name: "نام",
@@ -61,6 +65,7 @@ export default {
       settings: "تنظیمات",
       support: "پشتیبانی",
       logout: "خروج از سیستم",
+      logout_message: "شما از حساب‌کاربری خود خارج شدید.",
     },
     dashSetting: {
       lang: "زبان",
@@ -100,6 +105,7 @@ export default {
   en_US: {
     menu: {
       register: "Sign up",
+      dashboard: "Dashboard",
       login: "Log in",
       about: "About",
       home: "Home",
@@ -109,7 +115,6 @@ export default {
     },
     home: {
       welcome: "welcome bro",
-      dashboard: "Go to dasbhoard",
       heroHeading1: "Automated AI",
       heroHeading2: "code reviews",
       heroHeading3: "for any stack",
@@ -125,6 +130,9 @@ export default {
       about: "About",
     },
     auth: {
+      success_register: "You register successfully",
+      success_login: "You login successfully",
+      invalid_credentials: "Username/Email or password is invalid",
       welcome: "Welcome",
       email: "Email",
       first_name: "First Name",
@@ -158,6 +166,7 @@ export default {
       settings: "Settings",
       support: "Support",
       logout: "Logout",
+      logout_message: "You logout your account ",
     },
     dashSetting: {
       lang: "Language",

@@ -14,7 +14,6 @@ import classes from "../Login/Login.module.css";
 import { HomeLayout } from "../Layouts/HomeLayout";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { LANGS } from "../../i18n/locales/type";
 import { useLangStore } from "../../stores/langStore";
 import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
@@ -40,21 +39,10 @@ export function Register() {
 
   const submitRegisterForm = (data: RegisterData) => {
     console.log({ data, isValid: true });
-    httpRegister(data)
-    toast.success(' ثبت نام موفیت آمیز بود شیطون', {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      // progress: undefined,
-      theme: "dark",
-      });
-    navigate("/auth/login")
+    httpRegister(data);
+    toast.success(t("success_register"));
+    navigate("/auth/login");
   };
-
-
 
   return (
     <HomeLayout>

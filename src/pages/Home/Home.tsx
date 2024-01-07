@@ -13,12 +13,12 @@ export function Home() {
           <b>{t("welcome")}</b>
         </h1> */}
         <HeroText />
-        <Text bg={"violet"} w={"300"} p={10} mb={"lg"} ta={"center"} mx={"auto"} 
+        {/* <Text bg={"violet"} w={"300"} p={10} mb={"lg"} ta={"center"} mx={"auto"} 
         style={{borderRadius: "5px"}}>
           <Link to={"/dashboard"} style={{color: "white"}}>
             <b>{t("dashboard")}</b>
           </Link>
-        </Text>
+        </Text> */}
       </Container>
     </HomeLayout>
   );

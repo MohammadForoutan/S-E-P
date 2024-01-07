@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from "react-router-dom";
 import { ChangeLanguage } from "../ChangeLanguage/ChangeLanguage";
 import { ChangeScheme } from "../ChangeColorScheme/ColorScheme";
+import { useUserStore } from "../../stores";
+import { Logo } from "../Logo/Logo";
 export function Header() {
   const [opened, { toggle }] = useDisclosure(false);
 
@@ -71,6 +73,7 @@ export function Header() {
   });
 
   const navigate = useNavigate();
+  const userStore = useUserStore();
   return (
     <header className={classes.header}>
       <Container size="md">
@@ -78,38 +81,31 @@ export function Header() {
           {/* <MantineLogo size={28} /> */}
 
           <Group gap={5} visibleFrom="sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="icon icon-tabler icon-tabler-aperture"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#00abfb"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
-              <path d="M3.6 15h10.55" />
-              <path d="M6.551 4.938l3.26 10.034" />
-              <path d="M17.032 4.636l-8.535 6.201" />
-              <path d="M20.559 14.51l-8.535 -6.201" />
-              <path d="M12.257 20.916l3.261 -10.034" />
-            </svg>
+            <Logo />
             {items}
           </Group>
 
           <Group visibleFrom="md">
             <ChangeLanguage />
             <ChangeScheme />
-            <Button variant="default" onClick={() => navigate("/auth/login")}>
-              {t("login")}
-            </Button>
-            <Button onClick={() => navigate("/auth/register")}>
-              {t("register")}
-            </Button>
+
+            {!userStore.isAuthenticated ? (
+              <>
+                <Button
+                  variant="default"
+                  onClick={() => navigate("/auth/login")}
+                >
+                  {t("login")}
+                </Button>
+                <Button onClick={() => navigate("/auth/register")}>
+                  {t("register")}
+                </Button>
+              </>
+            ) : (
+              <Button onClick={() => navigate("/dashboard")}>
+                {t("dashboard")}
+              </Button>
+            )}
           </Group>
           <Burger opened={opened} onClick={toggle} size="sm" hiddenFrom="sm" />
         </div>

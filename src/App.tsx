@@ -31,13 +31,13 @@ export default function App() {
         >
           <ToastContainer
             rtl={langStore.lang === LANGS.fa_IR}
-            position="bottom-left"
+            position="top-right"
             toastStyle={{
               textAlign: langStore.lang !== LANGS.fa_IR ? "left" : "right",
             }}
             transition={Zoom}
             // limit={6}
-            autoClose={1500}
+            autoClose={3000}
             theme={schemeStore.scheme}
           />
           <RouterProvider router={router} />
