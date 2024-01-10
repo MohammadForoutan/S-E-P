@@ -1,6 +1,7 @@
 import axios from "axios";
 import { State, useUserStore } from "../../src/stores";
 import { httpRefreshToken } from ".";
+import { useNavigate } from "react-router-dom";
 
 let tokens: any | undefined;
 const createHttpClient = () => {
@@ -12,7 +13,7 @@ const createHttpClient = () => {
     tokens = localStorage.getItem("user-store")
       ? (JSON.parse(localStorage.getItem("user-store") ?? "") as State)?.tokens
       : null;
-    const access = tokens?.access;
+    const access = useUserStore.getState().tokens.access;
 
     config.headers!["Authorization"] = access ? `Bearer ${access}` : null;
     return config;
@@ -32,11 +33,11 @@ const createHttpClient = () => {
         try {
           const token = await httpRefreshToken();
           // save token
-          useUserStore.getState().setAccessToken(token.data.access);
-          useUserStore.getState().setRefreshToken(token.data.refresh);
+          useUserStore.getState().setRefreshToken(token.refresh);
           //   saveToken();
         } catch (error2) {
           useUserStore.getState().logout();
+          useNavigate()("/");
 
           throw error2;
         } finally {

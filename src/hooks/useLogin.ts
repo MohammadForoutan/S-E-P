@@ -9,9 +9,10 @@ import {
 import { toast } from "react-toastify";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "../stores";
+import { useStore } from "zustand";
 
 export const useLogin = () => {
-  const userStore = useUserStore.getState();
+  const setLogin = useUserStore((state) => state.login);
   const navigate = useNavigate();
   const { t } = useTranslation("auth");
   const loginMutate = useMutation<LoginResponse, HTTPFailedResponse, TForm>({
@@ -23,7 +24,7 @@ export const useLogin = () => {
   const onLoginSubmit = (credentialDTO: TForm): void => {
     mutate(credentialDTO, {
       onSuccess: (data) => {
-        userStore.login(data.access, data.refresh);
+        setLogin({ access: data.access, refresh: data.refresh });
         toast.success(t("success_login"));
         void navigate("/");
       },

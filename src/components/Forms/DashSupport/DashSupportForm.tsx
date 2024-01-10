@@ -57,10 +57,10 @@ function DashSupportForm() {
                 label={t("severity")}
                 defaultValue={"low"}
                 data={[
-                  { label: t("low"), value: "low" },
-                  { label: t("med"), value: "medium" },
-                  { label: t("high"), value: "high" },
-                  { label: t("emergency"), value: "emergency" },
+                  { label: t("low"), value: "1" },
+                  { label: t("med"), value: "3" },
+                  { label: t("high"), value: "5" },
+                  // { label: t("emergency"), value: "emergency" },
                 ]}
                 allowDeselect={false}
                 error={errors.discussion?.degree_of_importance?.message}

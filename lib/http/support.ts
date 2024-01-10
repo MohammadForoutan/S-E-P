@@ -1,4 +1,4 @@
-import { SupportData } from "../validation/support";
+import { SupportData } from "../validation";
 import { httpClient } from "./base";
 
 export type User = {
@@ -22,5 +22,5 @@ export type CreateDiscussionResponse = {
 };
 
 export const httpCreateDiscussion = (data: SupportData) => {
-  return httpClient.post("/support/discussion/", data);
+  return httpClient.post("/support/discussion/", data).then((res) => res.data);
 };

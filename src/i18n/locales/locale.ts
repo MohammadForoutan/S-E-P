@@ -75,6 +75,7 @@ export default {
     dashSupport: {
       title: "عنوان:",
       titlePlace: "یک عنوان مناسب بنویسید.",
+      discussion_created: "تیکت با موفقیت ساخته شد.",
       create: "شروع یک گفت‌وگو جدید",
       technical: "فنی",
       financial: "مالی",
@@ -179,6 +180,7 @@ export default {
       title: "Title",
       titlePlace: "Enter a clear title",
       create: "Create New Discussion",
+      discussion_created: "Discussion created successfully",
       technical: "Technical",
       financial: "Financial",
       low: "Low",

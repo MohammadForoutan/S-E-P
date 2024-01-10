@@ -10,7 +10,7 @@ export type RegisterResponse = {
 };
 
 export const httpRegister = (data: RegisterData) => {
-  return httpClient.post("/accounts/register/", data);
+  return httpClient.post("/accounts/register/", data).then((res) => res.data);
 };
 
 export type LoginResponse = {
@@ -19,13 +19,15 @@ export type LoginResponse = {
 };
 
 export const httpLogin = (data: RegisterData) => {
-  return httpClient.post("/accounts/login/", data);
+  return httpClient.post("/accounts/login/", data).then((res) => res.data);
 };
 
 export type RefreshResponse = {
   access: string;
 };
 export const httpRefreshToken = () => {
-  const refresh = useUserStore.getState().tokens.refresh;
-  return httpClient.post("/accounts/token/refresh", { refresh });
+  const refresh = useUserStore.getState()?.tokens?.refresh;
+  return httpClient
+    .post("/accounts/token/refresh", { refresh })
+    .then((res) => res.data);
 };
