@@ -1,7 +1,7 @@
 import { StateCreator, create } from "zustand";
 import { PersistOptions, createJSONStorage, persist } from "zustand/middleware";
 
-type State = {
+export type State = {
   isAuthenticated: boolean;
   username: string | null;
   email: string | null;

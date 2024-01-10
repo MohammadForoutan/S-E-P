@@ -1,65 +1,52 @@
 import axios from "axios";
-import { useUserStore } from "../../src/stores";
+import { State, useUserStore } from "../../src/stores";
+import { httpRefreshToken } from ".";
 
-// const tokenInfo = JSON.parse(localStorage.getItem("loginToken") ?? "");
-const access = useUserStore.getState().tokens.access;
+let tokens: any | undefined;
+const createHttpClient = () => {
+  const client = axios.create({
+    baseURL: "https://gglink.ir",
+  });
 
-export const httpClient = axios.create({
-  baseURL: "http://gglink.ir",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: access ? `Bearer ${access}` : null,
-  },
-});
+  client.interceptors.request.use((config) => {
+    tokens = localStorage.getItem("user-store")
+      ? (JSON.parse(localStorage.getItem("user-store") ?? "") as State)?.tokens
+      : null;
+    const access = tokens?.access;
 
-function createAxiosResponseInterceptor() {
-  const interceptor = axios.interceptors.response.use(
-    (response) => response,
-    (error) => {
-      // Reject promise if usual error
-      if (error.response.status !== 401) {
-        return Promise.reject(error);
-      }
+    config.headers!["Authorization"] = access ? `Bearer ${access}` : null;
+    return config;
+  });
 
-      /*
-       * When response code is 401, try to refresh the token.
-       * Eject the interceptor so it doesn't loop in case
-       * token refresh causes the 401 response.
-       *
-       * Must be re-attached later on or the token refresh will only happen once
-       */
-      axios.interceptors.response.eject(interceptor);
+  const addRefreshTokenInterceptor = () => {
+    const interceptorId = client.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        if (error?.response?.status !== 401) {
+          console.log("[REJECT-401]");
 
-      return axios
-        .post("/api/refresh_token", {
-          // Get token from state manager
-          refresh_token: useUserStore.getState().tokens.refresh,
-        })
-        .then((response) => {
-          // save token in state manager
-          useUserStore.getState().setAccessToken(response.data.access);
-          useUserStore.getState().setRefreshToken(response.data.refresh);
+          return Promise.reject(error);
+        }
+        client.interceptors.response.eject(interceptorId);
+
+        try {
+          const token = await httpRefreshToken();
+          // save token
+          useUserStore.getState().setAccessToken(token.data.access);
+          useUserStore.getState().setRefreshToken(token.data.refresh);
           //   saveToken();
+        } catch (error2) {
+          useUserStore.getState().logout();
 
-          error.response.config.headers["Authorization"] =
-            "Bearer " + response.data.access_token;
-          // Retry the initial call, but with the updated token in the headers.
-          // Resolves the promise if successful
-          return axios(error.response.config);
-        })
-        .catch((error2) => {
-          // Retry failed, clean up and reject the promise
-          // destroyToken();
-          // remove tokens from state manager
-          useUserStore.getState().setAccessToken("");
-          useUserStore.getState().setRefreshToken("");
+          throw error2;
+        } finally {
+          addRefreshTokenInterceptor();
+        }
+      }
+    );
+  };
+  addRefreshTokenInterceptor();
+  return client;
+};
 
-          // this.router.push("/login");
-          window.history.pushState({}, "", "/");
-          return Promise.reject(error2);
-        })
-        .finally(createAxiosResponseInterceptor); // Re-attach the interceptor by running the method
-    }
-  );
-}
-createAxiosResponseInterceptor(); // Execute the method once during start
+export const httpClient = createHttpClient();
