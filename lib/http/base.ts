@@ -5,16 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { LANGS } from "../../src/i18n/locales/type";
 
-let tokens: any | undefined;
 const createHttpClient = () => {
   const client = axios.create({
     baseURL: "https://gglink.ir",
   });
 
   client.interceptors.request.use((config) => {
-    tokens = localStorage.getItem("user-store")
-      ? (JSON.parse(localStorage.getItem("user-store") ?? "") as State)?.tokens
-      : null;
     const access = useUserStore.getState().tokens.access;
 
     config.headers!["Authorization"] = access ? `Bearer ${access}` : null;

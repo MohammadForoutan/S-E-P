@@ -5,7 +5,6 @@ import { toast } from "react-toastify";
 import {
   GetUsersResponse,
   HTTPFailedResponse,
-  User,
   httpGetUsers,
 } from "../../../lib";
 import { useEffect } from "react";
