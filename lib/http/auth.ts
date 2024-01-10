@@ -1,3 +1,4 @@
+import axios from "axios";
 import { RegisterData } from "..";
 import { useUserStore } from "../../src/stores";
 import { httpClient } from "./base";
@@ -27,7 +28,7 @@ export type RefreshResponse = {
 };
 export const httpRefreshToken = () => {
   const refresh = useUserStore.getState()?.tokens?.refresh;
-  return httpClient
-    .post("/accounts/token/refresh", { refresh })
+  return axios
+    .post("http://gglinks.ir/accounts/token/refresh", { refresh })
     .then((res) => res.data);
 };

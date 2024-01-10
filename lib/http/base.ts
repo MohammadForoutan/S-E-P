@@ -1,7 +1,9 @@
 import axios from "axios";
-import { State, useUserStore } from "../../src/stores";
+import { State, useLangStore, useUserStore } from "../../src/stores";
 import { httpRefreshToken } from ".";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { LANGS } from "../../src/i18n/locales/type";
 
 let tokens: any | undefined;
 const createHttpClient = () => {
@@ -26,8 +28,19 @@ const createHttpClient = () => {
         if (error?.response?.status !== 401) {
           console.log("[REJECT-401]");
 
+          if (error?.response?.status === 403) {
+            console.log("[FORBIDDEN-403]");
+            const lang = useLangStore.getState().lang;
+            toast.error(
+              lang === LANGS.en_US ? "Forbidden Action" : "دسترسی غیرمجاز"
+            );
+            useUserStore.getState().logout();
+            setTimeout(() => (window.location.href = "/"), 4000);
+            return;
+          }
           return Promise.reject(error);
         }
+
         client.interceptors.response.eject(interceptorId);
 
         try {
@@ -38,6 +51,7 @@ const createHttpClient = () => {
         } catch (error2) {
           useUserStore.getState().logout();
           useNavigate()("/");
+          window.location.href = "/auth/login";
 
           throw error2;
         } finally {

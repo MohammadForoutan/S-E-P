@@ -1,12 +1,6 @@
+import { User } from ".";
 import { SupportData } from "../validation";
 import { httpClient } from "./base";
-
-export type User = {
-  username: string;
-  first_name: string;
-  last_name: string;
-  is_staff: boolean;
-};
 
 export type Ticket = {
   id: number;
