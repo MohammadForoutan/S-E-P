@@ -16,6 +16,7 @@ type Action = {
   updateUser: (user: State) => void;
   setIsAuthenticated: (isAuth: boolean) => void;
   logout: () => void;
+  login: (access: string, refresh: string) => void;
 };
 
 type UserStore = Action & State;
@@ -52,6 +53,13 @@ export const useUserStore = create<UserStore, []>(
           ...state,
           isAuthenticated: false,
           tokens: { access: "", refresh: "" },
+        }));
+      },
+      login: (access: string, refresh: string) => {
+        set((state) => ({
+          ...state,
+          isAuthenticated: true,
+          tokens: { access, refresh },
         }));
       },
     }),

@@ -10,11 +10,7 @@ type Props = {
   created_at: Date;
 };
 
-export default function Discussion({
-  fullname,
-  discussionId,
-  created_at,
-}: Props) {
+export function Discussion({ fullname, discussionId, created_at }: Props) {
   const langStore = useLangStore();
   type TMessage = { created_at: Date; content: string; me: boolean };
   const Message = ({ created_at, content, me }: TMessage) => {

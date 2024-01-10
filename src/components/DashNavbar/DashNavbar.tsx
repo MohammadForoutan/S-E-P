@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { Group, Code, Box, Button } from "@mantine/core";
+import { Group, Code, Box } from "@mantine/core";
 import {
   IconBellRinging,
-  IconKey,
   IconSettings,
   IconLogout,
   IconHelpCircle,

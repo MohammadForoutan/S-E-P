@@ -14,21 +14,15 @@ import classes from "../Login/Login.module.css";
 import { HomeLayout } from "../Layouts/HomeLayout";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { useLangStore } from "../../stores/langStore";
-import { useMutation } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterData, registerSchema } from "@lib/validation";
-import { httpRegister } from "../../../lib";
-import { toast } from "react-toastify";
-import { useEffect } from "react";
+import { useRegister } from "../../hooks";
 
 export function Register() {
   const { t } = useTranslation("auth");
   const navigate = useNavigate();
-  const langStore = useLangStore();
 
-  // const {} = useMutation({ mutationFn: "", mutationKey: ["Register"] });
   const {
     register,
     handleSubmit,
@@ -37,12 +31,7 @@ export function Register() {
     resolver: zodResolver(registerSchema),
   });
 
-  const submitRegisterForm = (data: RegisterData) => {
-    console.log({ data, isValid: true });
-    httpRegister(data);
-    toast.success(t("success_register"));
-    navigate("/auth/login");
-  };
+  const { isPending: _, onRegisterSubmit } = useRegister();
 
   return (
     <HomeLayout>
@@ -74,49 +63,52 @@ export function Register() {
           </Text>
 
           <Paper withBorder shadow="md" p={30} mt={18} radius="md">
-            <form onSubmit={handleSubmit(submitRegisterForm)}>
+            <form onSubmit={handleSubmit(onRegisterSubmit)}>
               <TextInput
                 label={t("email")}
                 placeholder="you@mantine.dev"
-                error={!!errors.email && errors.email.message}
+                error={errors.email?.message}
+                required
                 {...register("email")}
               />
               <TextInput
                 label={t("first_name")}
                 placeholder={t("first_name_place")}
                 mt={"md"}
-                error={!!errors.first_name && errors.first_name.message}
+                error={errors.first_name?.message}
+                required
                 {...register("first_name")}
               />
               <TextInput
                 label={t("last_name")}
                 placeholder={t("last_name_place")}
                 mt={"md"}
-                error={!!errors.last_name && errors.last_name.message}
+                error={errors.last_name?.message}
+                required
                 {...register("last_name")}
               />
               <TextInput
                 label={t("username")}
                 placeholder={t("username_place")}
-                error={!!errors.username && errors.username.message}
+                error={errors.username?.message}
                 mt="md"
+                required
                 {...register("username")}
               />
               <PasswordInput
                 label={t("password")}
                 placeholder={t("password")}
                 mt="md"
-                error={!!errors.password && errors.password.message}
+                error={errors.password?.message}
+                required
                 {...register("password")}
               />
               <PasswordInput
                 label={t("confirm_password")}
                 placeholder={t("confirm_password")}
                 mt="md"
-                error={
-                  !!errors.password_confirmation &&
-                  errors.password_confirmation.message
-                }
+                required
+                error={errors.password_confirmation?.message}
                 {...register("password_confirmation")}
               />
               <Group mt="lg">

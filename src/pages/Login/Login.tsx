@@ -17,9 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoginData, LoginSchema } from "@lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { httpLogin } from "../../../lib";
-import { toast } from "react-toastify";
-import { useUserStore } from "../../stores";
+import { useLogin } from "../../hooks";
 
 export function Login() {
   const { t } = useTranslation("auth");
@@ -29,28 +27,9 @@ export function Login() {
     handleSubmit,
     formState: { errors },
   } = useForm<LoginData>({ resolver: zodResolver(LoginSchema) });
-  const userStore = useUserStore();
 
-  const submitLoginForm = async (data: LoginData) => {
-    console.log({ data, isValid: true });
-    try {
-      const res = await httpLogin(data);
+  const { isPending: _, onLoginSubmit } = useLogin();
 
-      userStore.setIsAuthenticated(true);
-      userStore.setAccessToken(res.data.access);
-      userStore.setRefreshToken(res.data.refresh);
-
-      toast.success(t("success_login"));
-      navigate("/");
-    } catch (error) {
-      toast.error(t("invalid_credentials"), {
-        position: "top-right",
-        autoClose: 3000,
-        // progress: undefined,
-        theme: "dark",
-      });
-    }
-  };
   return (
     <HomeLayout>
       <div className={classes.bg}>
@@ -81,11 +60,12 @@ export function Login() {
           </Text>
 
           <Paper withBorder shadow="md" p={30} mt={18} radius="md">
-            <form onSubmit={handleSubmit(submitLoginForm)}>
+            <form onSubmit={handleSubmit(onLoginSubmit)}>
               <TextInput
                 label={t("username")}
                 placeholder={t("username_place")}
-                error={!!errors.username && errors.username.message}
+                error={errors.username?.message}
+                required
                 {...register("username")}
               />
               <PasswordInput
@@ -93,7 +73,7 @@ export function Login() {
                 placeholder={t("password")}
                 required
                 mt="md"
-                error={!!errors.password && errors.password.message}
+                error={errors.password?.message}
                 {...register("password")}
               />
               <Group justify="space-between" mt="lg">
