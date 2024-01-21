@@ -4,6 +4,7 @@ import { IconChevronDown } from "@tabler/icons-react";
 import classes from "./DashHeader.module.css";
 import { ChangeLanguage } from "../ChangeLanguage/ChangeLanguage";
 import { ChangeScheme } from "../ChangeColorScheme/ColorScheme";
+import { Logo } from "../Logo/Logo";
 
 const links: any = [
   //   { link: "/about", label: "Features" },
@@ -79,7 +80,7 @@ export function DashHeader() {
     <header className={classes.header}>
       <Container size="md">
         <div className={classes.inner}>
-          <div>LOGO</div>
+          <Logo />
           <Group gap={5} visibleFrom="sm">
             {items}
             <ChangeLanguage />

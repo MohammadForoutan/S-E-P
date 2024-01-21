@@ -3,17 +3,31 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 export function DashSupport() {
-  const ActionBtn = function ({id = 4}: { id?: number}) {
+  const ActionBtn = function ({ id = 4 }: { id?: number }) {
     return (
       <Group gap={6} justify="center">
-        <Button bg={"red"}>{t("delete")}</Button>
-        <Button onClick={() => navigate(`/dashboard/support/discussion/${id}`)} bg={"green"}>{t("view")}</Button>
+        <Button
+          onClick={() => navigate(`/dashboard/support/discussion/${id}`)}
+          bg={"green"}
+        >
+          {t("view")}
+        </Button>
       </Group>
     );
   };
   const elements = [
-    { position: 6, mass: <ActionBtn id={112}/>, symbol: "C", name: "علی زارعی" },
-    { position: 7, mass: <ActionBtn id={151}/>, symbol: "N", name: "یاسر دهقان" },
+    {
+      position: 6,
+      mass: <ActionBtn id={112} />,
+      symbol: "C",
+      name: "علی زارعی",
+    },
+    {
+      position: 7,
+      mass: <ActionBtn id={151} />,
+      symbol: "N",
+      name: "یاسر دهقان",
+    },
     { position: 39, mass: <ActionBtn />, symbol: "Y", name: "Yttrium" },
     { position: 56, mass: <ActionBtn />, symbol: "Ba", name: "Barium" },
     { position: 58, mass: <ActionBtn />, symbol: "Ce", name: "Cerium" },
