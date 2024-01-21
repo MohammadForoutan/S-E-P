@@ -16,3 +16,13 @@ export type GetUsersResponse = {
 export const httpGetUsers = () => {
   return httpClient.get("accounts/user").then((res) => res.data);
 };
+
+export type GetUserResponse = {
+  username: string;
+  first_name: string;
+  last_name: string;
+  is_staff: boolean;
+};
+export const httpGetUser = ({ userId }: { userId: number }) => {
+  return httpClient.get("accounts/user/" + userId).then((res) => res.data);
+};

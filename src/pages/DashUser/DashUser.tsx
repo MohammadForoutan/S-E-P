@@ -1,14 +1,24 @@
-import { Button, Container, Group, Table } from "@mantine/core";
+import {
+  Box,
+  Button,
+  Container,
+  Group,
+  Modal,
+  Table,
+  Text,
+} from "@mantine/core";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-toastify";
 import {
+  GetUserResponse,
   GetUsersResponse,
   HTTPFailedResponse,
+  httpGetUser,
   httpGetUsers,
 } from "../../../lib";
-import { useEffect } from "react";
+import { useState } from "react";
 import { IconCheck, IconX } from "@tabler/icons-react";
+import { useDisclosure } from "@mantine/hooks";
 // import { useNavigate } from "react-router-dom";
 
 function DashUser() {
@@ -17,32 +27,39 @@ function DashUser() {
     queryFn: () => httpGetUsers(),
     queryKey: ["users"],
   });
+  const [opened, { open, close }] = useDisclosure(false);
+  const [selectedUser, setSelectedUser] = useState<GetUserResponse>();
+  const openModal = async (id: number) => {
+    // get user from api with useUserHook
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const user = await httpGetUser({ userId: 1 });
+    // set user with setSelectedUser
+    setSelectedUser(user);
+    // open modal
+    open();
+  };
 
-  useEffect(() => {
-    console.log({ users });
-  }, [users]);
-
-  const ActionBtn = function () {
-    const deleteAction = () => {
-      toast.error(t("delete_user"), {});
-    };
+  const ActionBtn = function (user: { user: GetUserResponse }) {
     return (
       <Group gap={6} justify="center">
-        <Button onClick={deleteAction} bg={"red"}>
-          {t("delete")}
+        {/* <Button bg={"green"} onClick={() => openModal(user.id ??)}> */}
+        <Button bg={"green"} onClick={() => openModal(1)}>
+          {t("view")}
         </Button>
-        <Button bg={"green"}>{t("view")}</Button>
       </Group>
     );
   };
 
   const rows = users?.results.map((user) => (
-    <Table.Tr key={user.first_name}>
+    <Table.Tr key={user.username}>
       <Table.Td>{user.first_name}</Table.Td>
       <Table.Td>{user.last_name}</Table.Td>
       <Table.Td>{user.username}</Table.Td>
       <Table.Td>
         {user.is_staff ? <IconCheck color="green" /> : <IconX color="red" />}
+      </Table.Td>
+      <Table.Td>
+        <ActionBtn user={user} />
       </Table.Td>
     </Table.Tr>
   ));
@@ -50,6 +67,24 @@ function DashUser() {
   return (
     <div>
       <Container>
+        <Modal
+          opened={opened}
+          onClose={close}
+          title={t("user_info")}
+          transitionProps={{ transition: "fade", duration: 200 }}
+        >
+          <p>{selectedUser?.first_name}</p>
+          <p>{selectedUser?.last_name}</p>
+          <p>{selectedUser?.username}</p>
+          <Text display={"flex"}>
+            <Box ml={"md"}>{t("is_staff")}: </Box>
+            {selectedUser?.is_staff ? (
+              <IconCheck color="green" />
+            ) : (
+              <IconX color="red" />
+            )}
+          </Text>
+        </Modal>
         <Table striped highlightOnHover ta={"center"}>
           <Table.Thead>
             <Table.Tr>
@@ -57,6 +92,7 @@ function DashUser() {
               <Table.Th ta={"center"}>{t("last_name")}</Table.Th>
               <Table.Th ta={"center"}>{t("username")}</Table.Th>
               <Table.Th ta={"center"}>{t("is_staff")}</Table.Th>
+              <Table.Th ta={"center"}>{t("action")}</Table.Th>
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>{rows}</Table.Tbody>

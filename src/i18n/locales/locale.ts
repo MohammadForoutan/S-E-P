@@ -99,6 +99,7 @@ export default {
     dashUser: {
       user_id: "شماره کاربر",
       username: "نام کاربری",
+      user_info: "اطلاعات کاربر",
       first_name: "نام",
       last_name: "نام خانوادگی",
       is_staff: "پشتیبان",
@@ -210,6 +211,7 @@ export default {
       is_staff: "Support",
       action: "Actions",
       delete: "Delete",
+      user_info: "User Information",
       view: "View",
       delete_user: "User deleted successfully.",
     },

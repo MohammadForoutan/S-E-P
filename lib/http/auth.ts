@@ -28,7 +28,7 @@ export type RefreshResponse = {
 };
 export const httpRefreshToken = () => {
   const refresh = useUserStore.getState()?.tokens?.refresh;
-  return axios
-    .post("http://gglinks.ir/accounts/token/refresh", { refresh })
+  return httpClient
+    .post("/accounts/token/refresh", { refresh })
     .then((res) => res.data);
 };
