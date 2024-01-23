@@ -1,4 +1,5 @@
 import { Button, Container, Group, Paper, Table } from "@mantine/core";
+import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
@@ -48,6 +49,9 @@ export function DashSupport() {
   const navigate = useNavigate();
   return (
     <div>
+      <Helmet>
+        <title>{t("page_title")}</title>
+      </Helmet>
       <Container>
         <Paper withBorder m={"md"} p={"md"}>
           <Button

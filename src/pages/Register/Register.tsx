@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterData, registerSchema } from "@lib/validation";
 import { useRegister } from "../../hooks";
+import { Helmet } from "react-helmet";
 
 export function Register() {
   const { t } = useTranslation("auth");
@@ -35,6 +36,9 @@ export function Register() {
 
   return (
     <HomeLayout>
+      <Helmet>
+        <title>{t("page_title")}</title>
+      </Helmet>
       <div className={classes.bg}>
         <Container size={420} py={40} pb={90}>
           <Title ta="center" className={classes.title}>

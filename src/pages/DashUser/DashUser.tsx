@@ -19,6 +19,7 @@ import {
 import { useState } from "react";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
+import { Helmet } from "react-helmet";
 // import { useNavigate } from "react-router-dom";
 
 function DashUser() {
@@ -66,6 +67,9 @@ function DashUser() {
 
   return (
     <div>
+      <Helmet>
+        <title>{t("page_title")}</title>
+      </Helmet>
       <Container>
         <Modal
           opened={opened}

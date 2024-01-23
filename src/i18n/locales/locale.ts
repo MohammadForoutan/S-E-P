@@ -1,5 +1,8 @@
 export default {
   fa_IR: {
+    dashboard: {
+      page_title: "یپشخان",
+    },
     menu: {
       dashboard: "داشبورد",
       register: "ثبت نام",
@@ -11,6 +14,7 @@ export default {
       light: "روشن",
     },
     home: {
+      page_title: "خانه - صفحه اصلی",
       welcome: "خوش آمدید",
       dashboard: "داشبورد",
       heroHeading1: "انجام خودکار",
@@ -29,6 +33,7 @@ export default {
       about: "درباره ما",
     },
     auth: {
+      page_title: "ثبت‌نام/ورود",
       success_register: "ثبت‌نام موفقیت آمیز بود.",
       success_login: "ورود موفقیت آمیز بود",
       invalid_credentials: "نام‌کاربری/ایمیل یا رمزعبور اشتباه است",
@@ -54,6 +59,7 @@ export default {
       createAccount: "حساب بسازید",
     },
     notFound: {
+      page_title: "404 - صفحه پیدا نشد",
       heading: "مشکلی پیش آمده است...",
       paragraph:
         "صفحه ای که می خواهید باز کنید وجود ندارد. ممکن است آدرس را اشتباه تایپ کرده باشید یا صفحه به URL دیگری منتقل شده باشد. اگر فکر می کنید این یک خطا است با پشتیبانی تماس بگیرید.",
@@ -73,6 +79,7 @@ export default {
       lang: "زبان",
     },
     dashSupport: {
+      page_title: "پیشخان - پشتیبانی",
       title: "عنوان:",
       titlePlace: "یک عنوان مناسب بنویسید.",
       discussion_created: "تیکت با موفقیت ساخته شد.",
@@ -97,6 +104,7 @@ export default {
       view: "مشاهده",
     },
     dashUser: {
+      page_title: "پیشخان - کاربران",
       user_id: "شماره کاربر",
       username: "نام کاربری",
       user_info: "اطلاعات کاربر",
@@ -121,6 +129,7 @@ export default {
       light: "Light",
     },
     home: {
+      page_title: "Home - Code Review",
       welcome: "welcome bro",
       heroHeading1: "Automated AI",
       heroHeading2: "code reviews",
@@ -137,6 +146,7 @@ export default {
       about: "About",
     },
     auth: {
+      page_title: "Register/Login",
       success_register: "You register successfully",
       success_login: "You login successfully",
       invalid_credentials: "Username/Email or password is invalid",
@@ -162,6 +172,7 @@ export default {
       createAccount: "Create account",
     },
     notFound: {
+      page_title: "404 - Page Not Found",
       heading: "Something is not right...",
       paragraph:
         "Page you are trying to open does not exist. You may have mistyped the address, or the page has been moved to another URL. If you think this is an error contact support.",
@@ -181,6 +192,7 @@ export default {
       lang: "Language",
     },
     dashSupport: {
+      page_title: "Dashboard - Support",
       title: "Title",
       titlePlace: "Enter a clear title",
       create: "Create New Discussion",
@@ -203,7 +215,11 @@ export default {
       delete: "Delte",
       view: "View",
     },
+    dashboard: {
+      page_title: "Dashboard",
+    },
     dashUser: {
+      page_title: "Dashboard - User",
       user_id: "User ID",
       username: "Username",
       first_name: "First Name",
