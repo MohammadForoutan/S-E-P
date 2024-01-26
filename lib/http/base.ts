@@ -7,7 +7,7 @@ import { LANGS } from "../../src/i18n/locales/type";
 
 const createHttpClient = () => {
   const client = axios.create({
-    baseURL: "https://gglink.ir",
+    baseURL: "https://sep.gglink.ir",
   });
 
   client.interceptors.request.use((config) => {
