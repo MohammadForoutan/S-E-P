@@ -6,7 +6,7 @@ import { GetDiscussionResponse, HTTPFailedResponse, httpGetDiscussion } from "..
 import { useQuery } from "@tanstack/react-query";
 
 export function DashSupport() {
-  const { data: users } = useQuery<GetDiscussionResponse, HTTPFailedResponse>({
+  const { data: _users } = useQuery<GetDiscussionResponse, HTTPFailedResponse>({
     queryFn: () => httpGetDiscussion(),
     queryKey: ["discussion"],
   });

@@ -30,7 +30,7 @@ function DashUser() {
   });
   const [opened, { open, close }] = useDisclosure(false);
   const [selectedUser, setSelectedUser] = useState<GetUserResponse>();
-  const openModal = async (id: number) => {
+  const openModal = async (_id: number) => {
     // get user from api with useUserHook
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const user = await httpGetUser({ userId: 1 });
@@ -40,7 +40,7 @@ function DashUser() {
     open();
   };
 
-  const ActionBtn = function (user: { user: GetUserResponse }) {
+  const ActionBtn = function (_user: { user: GetUserResponse }) {
     return (
       <Group gap={6} justify="center">
         {/* <Button bg={"green"} onClick={() => openModal(user.id ??)}> */}

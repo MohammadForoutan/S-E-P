@@ -1,4 +1,3 @@
-import axios from "axios";
 import { RegisterData } from "..";
 import { useUserStore } from "../../src/stores";
 import { httpClient } from "./base";

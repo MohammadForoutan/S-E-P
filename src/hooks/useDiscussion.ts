@@ -26,7 +26,7 @@ export const useDiscussion = () => {
     mutate(credentialDTO, {
       onSuccess: (data) => {
         toast.success(t("discussion_created"));
-        void navigate(`/dashboard/support/discussion/${data.data.id}`);
+        void navigate(`/dashboard/support/discussion/${data.id}`);
       },
       onError: (err) => {
         console.log({ err });
