@@ -2,8 +2,23 @@ import { Button, Container, Group, Paper, Table } from "@mantine/core";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { GetDiscussionResponse, HTTPFailedResponse, httpGetDiscussion } from "../../../lib";
+import { useQuery } from "@tanstack/react-query";
 
 export function DashSupport() {
+  const { data: users } = useQuery<GetDiscussionResponse, HTTPFailedResponse>({
+    queryFn: () => httpGetDiscussion(),
+    queryKey: ["discussion"],
+  });
+
+  // const handleGetDiscussion = async ()=>{
+  //  await httpGetDiscussion()
+  // }
+
+  // useEffect(()=>{
+  //   handleGetDiscussion()
+  // },[])
+
   const ActionBtn = function ({ id = 4 }: { id?: number }) {
     return (
       <Group gap={6} justify="center">
