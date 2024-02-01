@@ -26,3 +26,7 @@ export type getDiscussion = {
 export const httpGetDiscussion = () => {
     return httpClient.get("/support/discussion/").then((res) => res.data);
 };
+
+export const httpGetDiscussionId = (id : number) => {
+    return httpClient.get(`/support/discussion/${id}`).then((res) => res.data);
+};

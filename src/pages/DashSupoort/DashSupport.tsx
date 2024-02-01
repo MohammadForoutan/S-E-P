@@ -8,7 +8,7 @@ import {
   httpGetDiscussion,
 } from "../../../lib";
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
+
 
 export function DashSupport() {
   const { data  } = useQuery({
@@ -16,9 +16,6 @@ export function DashSupport() {
     queryKey: ["discussion"],
   });
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
 
   const ActionBtn = function ({ id = 4 }: { id?: number }) {
     return (
@@ -31,35 +28,7 @@ export function DashSupport() {
       </Group>
     );
   };
-  const elements = [
-    {
-      position: 6,
-      mass: <ActionBtn id={112} />,
-      symbol: "C",
-      name: "علی زارعی",
-    },
-    {
-      position: 7,
-      mass: <ActionBtn id={151} />,
-      symbol: "N",
-      name: "یاسر دهقان",
-    },
-    { position: 39, mass: <ActionBtn />, symbol: "Y", name: "Yttrium" },
-    { position: 56, mass: <ActionBtn />, symbol: "Ba", name: "Barium" },
-    { position: 58, mass: <ActionBtn />, symbol: "Ce", name: "Cerium" },
-  ];
 
-  // const rows = data.map((element : any) => (
-  //   <Table.Tr key={element.name}>
-  //     <Table.Td>{element.position}</Table.Td>
-  //     <Table.Td>{element.name}</Table.Td>
-  //     <Table.Td>{element.symbol}</Table.Td>
-  //     <Table.Td>{element.mass}</Table.Td>
-  //   </Table.Tr>
-  // ));
-
-  // const _timeoutRef = useRef<number>(-1);
-  // const [data, setData] = useState<string[]>([]);
   const { t } = useTranslation("dashSupport");
   const navigate = useNavigate();
   return (

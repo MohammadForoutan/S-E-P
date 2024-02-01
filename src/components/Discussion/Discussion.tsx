@@ -8,9 +8,10 @@ type Props = {
   fullname: string;
   discussionId: number;
   created_at: Date;
+  data : object
 };
 
-export function Discussion({ fullname, discussionId, created_at }: Props) {
+export function Discussion({ fullname, discussionId, created_at , data }: Props) {
   const langStore = useLangStore();
   type TMessage = { created_at: Date; content: string; me: boolean };
   const Message = ({ created_at, content, me }: TMessage) => {
@@ -25,7 +26,7 @@ export function Discussion({ fullname, discussionId, created_at }: Props) {
         ml={me && langStore.lang == LANGS.en_US ? "auto" : ""}
       >
         <p>{content}</p>
-        <span>
+        <span style={{direction : "rtl"}}>
           {langStore.lang === LANGS.en_US
             ? new Date(created_at).toLocaleDateString("en-us", {
                 minute: "2-digit",
@@ -75,12 +76,16 @@ export function Discussion({ fullname, discussionId, created_at }: Props) {
       </Paper>
 
       <div>
-        {/* <Paper bg={"green"} h={900}></Paper> */}
         <main>
+          {
+            data?.tickets?.map(t => {
+              return <Message key={Math.random} me={t.is_staff} content={t.text} created_at={t.sent_date} />
+            })
+          }
+          
+          {/* <Message me={false} content="Random text" created_at={new Date()} />
           <Message me={true} content="Random text" created_at={new Date()} />
-          <Message me={false} content="Random text" created_at={new Date()} />
-          <Message me={true} content="Random text" created_at={new Date()} />
-          <Message me={false} content="Random text" created_at={new Date()} />
+          <Message me={false} content="Random text" created_at={new Date()} /> */}
         </main>
       </div>
 
