@@ -59,7 +59,7 @@ function DashSupportForm() {
                 data={[
                   { label: t("low"), value: "1" },
                   { label: t("med"), value: "3" },
-                  { label: t("high"), value: "5" },
+                  { label: t("med"), value: "5" },
                   // { label: t("emergency"), value: "emergency" },
                 ]}
                 allowDeselect={false}

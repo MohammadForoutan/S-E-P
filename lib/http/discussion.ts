@@ -21,6 +21,8 @@ export type getDiscussion = {
     ticket: discussion[];
 };
 
+
+
 export const httpGetDiscussion = () => {
     return httpClient.get("/support/discussion/").then((res) => res.data);
 };
