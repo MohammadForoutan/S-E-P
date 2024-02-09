@@ -22,6 +22,8 @@ export type GetUserResponse = {
   first_name: string;
   last_name: string;
   is_staff: boolean;
+  id : number;
+  email : string
 };
 export const httpGetUser = ({ userId }: { userId: number }) => {
   return httpClient.get("accounts/user/" + userId).then((res) => res.data);

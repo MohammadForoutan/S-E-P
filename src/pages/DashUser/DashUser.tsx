@@ -33,7 +33,7 @@ function DashUser() {
   const openModal = async (_id: number) => {
     // get user from api with useUserHook
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const user = await httpGetUser({ userId: 1 });
+    const user = await httpGetUser({ userId: _id });
     // set user with setSelectedUser
     setSelectedUser(user);
     // open modal
@@ -41,10 +41,12 @@ function DashUser() {
   };
 
   const ActionBtn = function (_user: { user: GetUserResponse }) {
+    // console.log(_user.user.id);
+    
     return (
       <Group gap={6} justify="center">
         {/* <Button bg={"green"} onClick={() => openModal(user.id ??)}> */}
-        <Button bg={"green"} onClick={() => openModal(1)}>
+        <Button bg={"green"} onClick={() => openModal(_user.user.id)}>
           {t("view")}
         </Button>
       </Group>
@@ -77,9 +79,10 @@ function DashUser() {
           title={t("user_info")}
           transitionProps={{ transition: "fade", duration: 200 }}
         >
-          <p>{selectedUser?.first_name}</p>
-          <p>{selectedUser?.last_name}</p>
-          <p>{selectedUser?.username}</p>
+          <p> نام : &nbsp; {selectedUser?.first_name}</p>
+          <p>نام خانوادگی : &nbsp; {selectedUser?.last_name}</p>
+          <p>نام کاربری : &nbsp; {selectedUser?.username}</p>
+          <p>ایمیل : &nbsp; {selectedUser?.email}</p>
           <Text display={"flex"}>
             <Box ml={"md"}>{t("is_staff")}: </Box>
             {selectedUser?.is_staff ? (
