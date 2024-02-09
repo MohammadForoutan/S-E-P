@@ -13,8 +13,6 @@ export function DashSupport() {
     queryKey: ["discussion"],
   });
 
-  console.log({ data });
-
   const ActionBtn = function ({ id = 4 }: { id?: number }) {
     return (
       <Group gap={6} justify="center">
@@ -45,47 +43,55 @@ export function DashSupport() {
             {t("create")}
           </Button>
         </Paper>
-        <Table striped highlightOnHover ta={"center"}>
-          <Table.Thead>
-            <Table.Tr>
-              <Table.Th ta={"center"}>{t("discussion_id")}</Table.Th>
-              <Table.Th ta={"center"}>{t("topic")}</Table.Th>
-              <Table.Th ta={"center"}>{t("full_name")}</Table.Th>
-              <Table.Th ta={"center"}>{t("is_terminated")}</Table.Th>
-              <Table.Th ta={"center"}>{t("severity")}</Table.Th>
-              <Table.Th ta={"center"}>{t("action")}</Table.Th>
-            </Table.Tr>
-          </Table.Thead>
-          <Table.Tbody>
-            {data?.results?.length
-              ? data?.results?.reverse().map((d: any) => {
-                  return (
-                    <Table.Tr key={Math.random()}>
-                      <Table.Td>{d.id}</Table.Td>
-                      <Table.Td>{d.topic}</Table.Td>
-                      <Table.Td>{1}</Table.Td>
-                      <Table.Td>
-                        <Text color={d.is_terminated ? "red" : "green"}>
-                          {d.is_terminated ? t("finish") : t("continue")}
-                        </Text>
-                      </Table.Td>
-                      <Table.Td>
-                        {d.degree_of_importance == 1 ? (
-                          <Text color="green">{t("low")}</Text>
-                        ) : d.degree_of_importance == 3 ? (
-                          <Text color="yellow">{t("med")}</Text>
-                        ) : (
-                          <Text color="red">{t("high")}</Text>
-                        )}
-                      </Table.Td>
-                      <Table.Td>{<ActionBtn id={d.id} />}</Table.Td>
-                    </Table.Tr>
-                  );
-                })
-              : null}
-          </Table.Tbody>
-          {/* <Table.Caption>Scroll page to see sticky thead</Table.Caption> */}
-        </Table>
+        {data?.results.length > 0 ? (
+          <Table striped highlightOnHover ta={"center"}>
+            <Table.Thead>
+              <Table.Tr>
+                <Table.Th ta={"center"}>{t("discussion_id")}</Table.Th>
+                <Table.Th ta={"center"}>{t("topic")}</Table.Th>
+                <Table.Th ta={"center"}>{t("full_name")}</Table.Th>
+                <Table.Th ta={"center"}>{t("is_terminated")}</Table.Th>
+                <Table.Th ta={"center"}>{t("severity")}</Table.Th>
+                <Table.Th ta={"center"}>{t("action")}</Table.Th>
+              </Table.Tr>
+            </Table.Thead>
+            <Table.Tbody>
+              {data?.results?.length
+                ? data?.results?.reverse().map((d: any) => {
+                    return (
+                      <Table.Tr key={Math.random()}>
+                        <Table.Td>{d.id}</Table.Td>
+                        <Table.Td>{d.topic}</Table.Td>
+                        <Table.Td>{1}</Table.Td>
+                        <Table.Td>
+                          <Text color={d.is_terminated ? "red" : "green"}>
+                            {d.is_terminated ? t("finish") : t("continue")}
+                          </Text>
+                        </Table.Td>
+                        <Table.Td>
+                          {d.degree_of_importance == 1 ? (
+                            <Text color="green">{t("low")}</Text>
+                          ) : d.degree_of_importance == 3 ? (
+                            <Text color="yellow">{t("med")}</Text>
+                          ) : (
+                            <Text color="red">{t("high")}</Text>
+                          )}
+                        </Table.Td>
+                        <Table.Td>{<ActionBtn id={d.id} />}</Table.Td>
+                      </Table.Tr>
+                    );
+                  })
+                : null}
+            </Table.Tbody>
+            {/* <Table.Caption>Scroll page to see sticky thead</Table.Caption> */}
+          </Table>
+        ) : (
+          <Container>
+            <Paper withBorder ta={"center"} p={"md"}>
+              <Text>{t("no_data")}</Text>
+            </Paper>
+          </Container>
+        )}
       </Container>
     </div>
   );

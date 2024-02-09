@@ -11,6 +11,7 @@ import DashSupportForm from "../components/Forms/DashSupport/DashSupportForm";
 import { DashDiscussion } from "./DashDiscussion/DashDiscussion";
 import { DashUser } from "./DashUser/DashUser";
 import { useUserStore } from "../stores";
+import { DashProfile } from "./DashProfile/DashProfile";
 
 function loginLoader() {
   const isAuth = useUserStore.getState().isAuthenticated;
@@ -59,6 +60,7 @@ export const router = createBrowserRouter([
         path: "user",
         element: <DashUser />,
       },
+      { path: "profile", element: <DashProfile /> },
       {
         path: "setting",
         element: <DashSetting />,

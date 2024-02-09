@@ -1,10 +1,14 @@
 import { StateCreator, create } from "zustand";
 import { PersistOptions, createJSONStorage, persist } from "zustand/middleware";
 
+export type Role = "user" | "admin";
 export type State = {
+  firstName?: string | null;
+  lastName?: string | null;
   isAuthenticated: boolean;
   username: string | null;
   email: string | null;
+  role?: Role;
   tokens: {
     access: string | null;
     refresh: string | null;
@@ -13,8 +17,11 @@ export type State = {
 type Action = {
   setAccessToken: (token: string) => void;
   setRefreshToken: (token: string) => void;
-  updateUser: (user: State) => void;
   setIsAuthenticated: (isAuth: boolean) => void;
+  setRole: (role: Role) => void;
+  setUsername: (username: string) => void;
+  setFullName: (firstName: string, lastName: string) => void;
+  updateUser: (user: State) => void;
   logout: () => void;
   login: ({ access, refresh }: { access: string; refresh: string }) => void;
 };
@@ -44,6 +51,15 @@ export const useUserStore = create<UserStore, []>(
       },
       setRefreshToken: (refresh: string) => {
         set((state) => ({ ...state, tokens: { ...state.tokens, refresh } }));
+      },
+      setUsername: (username: string) => {
+        set((state) => ({ ...state, username }));
+      },
+      setFullName: (firstName: string, lastName: string) => {
+        set((state) => ({ ...state, firstName, lastName }));
+      },
+      setRole: (role: Role) => {
+        set((state) => ({ ...state, role }));
       },
       updateUser: (user: State) => {
         set((state) => ({ ...state, ...user }));
