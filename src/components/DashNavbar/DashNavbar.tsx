@@ -9,7 +9,7 @@ import {
   IconUserEdit,
 } from "@tabler/icons-react";
 import classes from "./DashNavbar.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { Logo } from "../Logo/Logo";
 import { useUserStore } from "../../stores";
@@ -47,6 +47,7 @@ export function DashNavbar() {
     toast.info(t("logout_message"));
     navigate("/");
   };
+  const location = useLocation();
 
   const links = data.map((item) => {
     if (item.admin && userStore?.role !== "admin") {
@@ -57,7 +58,11 @@ export function DashNavbar() {
         to={item.link}
         style={{ marginBottom: "8px" }}
         className={classes.link}
-        data-active={item.label === active || undefined}
+        data-active={
+          item.label === active ||
+          location.pathname.includes(item.label) ||
+          undefined
+        }
         key={item.label}
         onClick={(_event) => {
           setActive(item.label);
