@@ -28,3 +28,7 @@ b {
   font-family: "peyda bolder" !important;
   font-weight: bold !important;
 }
+
+thead tr * {
+  font-weight: bolder !important;
+}

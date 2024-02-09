@@ -29,10 +29,10 @@ export const useLogin = () => {
       },
       onError: (err) => {
         console.log({ err });
-        if (err.response?.status === 400) {
+        if (err.response?.status >= 400) {
           return toast.error(t("invalid_credentials"));
         }
-        toast.error(t("internal_error"));
+        return toast.error(t("internal_error"));
       },
     });
   };

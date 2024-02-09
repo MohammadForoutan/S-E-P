@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 export const useDiscussion = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("auth");
+  const { t } = useTranslation("discussion");
   const discussionMutate = useMutation<
     CreateDiscussionResponse,
     HTTPFailedResponse,
@@ -31,7 +31,7 @@ export const useDiscussion = () => {
       onError: (err) => {
         console.log({ err });
         if (err.response?.status === 400) {
-          return toast.error(t("invalid_credentials"));
+          return toast.error(t("invalid_input"));
         }
         toast.error(t("internal_error"));
       },

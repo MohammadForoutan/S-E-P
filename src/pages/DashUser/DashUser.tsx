@@ -42,7 +42,7 @@ function DashUser() {
 
   const ActionBtn = function (_user: { user: GetUserResponse }) {
     // console.log(_user.user.id);
-    
+
     return (
       <Group gap={6} justify="center">
         {/* <Button bg={"green"} onClick={() => openModal(user.id ??)}> */}
@@ -79,12 +79,20 @@ function DashUser() {
           title={t("user_info")}
           transitionProps={{ transition: "fade", duration: 200 }}
         >
-          <p> نام : &nbsp; {selectedUser?.first_name}</p>
-          <p>نام خانوادگی : &nbsp; {selectedUser?.last_name}</p>
-          <p>نام کاربری : &nbsp; {selectedUser?.username}</p>
-          <p>ایمیل : &nbsp; {selectedUser?.email}</p>
+          <p>
+            {t("first_name")} : &nbsp; {selectedUser?.first_name}
+          </p>
+          <p>
+            {t("last_name")} : &nbsp; {selectedUser?.last_name}
+          </p>
+          <p>
+            {t("username")} : &nbsp; {selectedUser?.username}
+          </p>
+          <p>
+            {t("email")} : &nbsp; {selectedUser?.email}
+          </p>
           <Text display={"flex"}>
-            <Box ml={"md"}>{t("is_staff")}: </Box>
+            <Box>{t("is_staff")}: </Box>
             {selectedUser?.is_staff ? (
               <IconCheck color="green" />
             ) : (
