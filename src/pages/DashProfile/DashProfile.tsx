@@ -23,32 +23,32 @@ export function DashProfile() {
   return (
     <Box p={"lg"}>
       <Box mb={"md"}>
-        <Text>{t("first_name")}</Text>
+        <Text className="bolder">{t("first_name")}</Text>
         {user?.first_name || t("unknown")}
       </Box>
 
       <Box mb={"md"}>
-        <Text>{t("last_name")}</Text>
+        <Text className="bolder">{t("last_name")}</Text>
         {user?.last_name || t("unknown")}
       </Box>
 
       <Box mb={"md"}>
-        <Text>{t("username")}</Text>
+        <Text className="bolder">{t("username")}</Text>
         {user?.username || t("unknown")}
       </Box>
 
       <Box mb={"md"}>
-        <Text>{t("email")}</Text>
+        <Text className="bolder">{t("email")}</Text>
         {user?.email || t("unknown")}
       </Box>
 
       <Box mb={"md"}>
-        <Text>{t("level")}</Text>
+        <Text className="bolder">{t("level")}</Text>
         {user?.is_staff ? t("admin") : t("user") || t("unknown")}
       </Box>
 
       <Box mb={"md"}>
-        <Text>{t("join_date")}</Text>
+        <Text className="bolder">{t("join_date")}</Text>
         {user?.date_joined
           ? langStore.lang === LANGS.en_US
             ? new Date(user?.date_joined).toLocaleDateString("en-us", {

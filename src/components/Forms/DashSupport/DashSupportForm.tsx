@@ -7,7 +7,6 @@ import {
   TextInput,
   Textarea,
 } from "@mantine/core";
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { SupportData, supportSchema } from "../../../../lib/validation/support";
@@ -15,7 +14,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useDiscussion } from "../../../hooks";
 
 function DashSupportForm() {
-  const [_loading, _setLoading] = useState(false);
   const { t } = useTranslation("dashSupport");
 
   const {
@@ -25,7 +23,7 @@ function DashSupportForm() {
     setValue,
   } = useForm<SupportData>({ resolver: zodResolver(supportSchema) });
 
-  const { isPending: _, onCreateDiscussionSubmit } = useDiscussion();
+  const { onCreateDiscussionSubmit } = useDiscussion();
 
   return (
     <div>
@@ -46,27 +44,27 @@ function DashSupportForm() {
             <Group mt={"8px"} grow>
               <Select
                 label={t("department")}
-                defaultValue={"technical"}
+                defaultValue={"T"}
                 data={[
-                  { label: t("technical"), value: "technical" },
-                  { label: t("financial"), value: "financial" },
+                  { label: t("technical"), value: "T" },
+                  { label: t("financial"), value: "F" },
                 ]}
                 allowDeselect={false}
               />
               <Select
                 label={t("severity")}
-                defaultValue={"low"}
+                defaultValue={"1"}
                 data={[
                   { label: t("low"), value: "1" },
                   { label: t("med"), value: "3" },
-                  { label: t("med"), value: "5" },
+                  { label: t("high"), value: "5" },
                   // { label: t("emergency"), value: "emergency" },
                 ]}
                 allowDeselect={false}
                 error={errors.discussion?.degree_of_importance?.message}
                 {...register("discussion.degree_of_importance")}
-                onChange={(val: any) => {
-                  setValue("discussion.degree_of_importance", val);
+                onChange={(val: unknown) => {
+                  setValue("discussion.degree_of_importance", val as string);
                 }}
               />
             </Group>

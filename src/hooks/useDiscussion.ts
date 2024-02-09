@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 
 export const useDiscussion = () => {
   const navigate = useNavigate();
-  const { t } = useTranslation("discussion");
+  const { t } = useTranslation("dashSupport");
   const discussionMutate = useMutation<
     CreateDiscussionResponse,
     HTTPFailedResponse,
@@ -25,6 +25,8 @@ export const useDiscussion = () => {
   const onCreateDiscussionSubmit = (credentialDTO: TForm): void => {
     mutate(credentialDTO, {
       onSuccess: (data) => {
+        console.log({ data });
+
         toast.success(t("discussion_created"));
         void navigate(`/dashboard/support/discussion/${data.id}`);
       },

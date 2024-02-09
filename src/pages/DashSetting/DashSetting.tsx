@@ -10,11 +10,11 @@ export function DashSetting() {
     <Container>
       <Group grow>
         <div>
-          <Text>{t("lang")}</Text>
+          <Text className="bolder">{t("lang")}</Text>
           <ChangeLanguage />
         </div>
         <div>
-          <Text>{t("theme")}</Text>
+          <Text className="bolder">{t("theme")}</Text>
           <ChangeScheme />
         </div>
       </Group>
