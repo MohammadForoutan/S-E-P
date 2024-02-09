@@ -12,7 +12,6 @@ export function DashSetting() {
             <Text>{t("lang")}</Text>
             <ChangeLanguage />
           </div>
-          <div>2</div>
         </Group>
     </Container>
   );
