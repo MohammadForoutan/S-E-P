@@ -29,3 +29,7 @@ export const httpGetDiscussion = () => {
 export const httpGetDiscussionId = (id: number) => {
   return httpClient.get(`/support/discussion/${id}`).then((res) => res.data);
 };
+
+export const httpCreateChat = (id: number, data: { text: string }) => {
+  return httpClient.post(`/support/ticket/${id}/`, data).then((res) => res.data);
+};

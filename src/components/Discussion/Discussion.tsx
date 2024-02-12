@@ -33,6 +33,7 @@ export function Discussion({
         py={"3"}
         w={"57%"}
         px={"8"}
+        mt={"5"}
         bg={me ? "#4527A099" : "#2E7D32"}
         mr={me && langStore.lang == LANGS.fa_IR ? "auto" : ""}
         ml={me && langStore.lang == LANGS.en_US ? "auto" : ""}
