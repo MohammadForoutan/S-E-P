@@ -3,6 +3,7 @@ import { Discussion } from "../../components/Discussion/Discussion";
 import { useQuery } from "@tanstack/react-query";
 import { httpGetDiscussionId } from "../../../lib";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const DashDiscussion = () => {
   const { id } = useParams();
@@ -12,20 +13,26 @@ const DashDiscussion = () => {
     queryKey: ["singleDiscussion", id],
   });
 
+  useEffect(()=>{
+    console.log(data);
+  })
+
   return (
     <div>
       <Container size={"rem"}>
         <div>
-          <Discussion
-            data={data.data}
+          {data ? (
+            <Discussion
+            data={data}
             discussionId={id!}
             created_at={data?.start_time}
             fullname={
-              data.data.tickets[0].user?.first_name +
+              data.tickets[0].user?.first_name +
               "  " +
-              data.data?.tickets[0].user?.last_name
+              data?.tickets[0].user?.last_name
             }
           />
+          ) : null}
         </div>
       </Container>
     </div>
