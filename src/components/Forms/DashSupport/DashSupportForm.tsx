@@ -12,6 +12,7 @@ import { useTranslation } from "react-i18next";
 import { SupportData, supportSchema } from "../../../../lib/validation/support";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useDiscussion } from "../../../hooks";
+import { useEffect } from "react";
 
 function DashSupportForm() {
   const { t } = useTranslation("dashSupport");
@@ -23,6 +24,14 @@ function DashSupportForm() {
     setValue,
   } = useForm<SupportData>({ resolver: zodResolver(supportSchema) });
 
+  useEffect(() => {
+    setValue("discussion.degree_of_importance", "1");
+    setValue("discussion.department", "T");
+  }, []);
+
+  useEffect(() => {
+    console.log({ errors });
+  }, [errors]);
   const { onCreateDiscussionSubmit } = useDiscussion();
 
   return (
@@ -50,22 +59,25 @@ function DashSupportForm() {
                   { label: t("financial"), value: "F" },
                 ]}
                 allowDeselect={false}
+                {...register("discussion.department")}
+                onChange={(val: unknown) =>
+                  setValue("discussion.department", val as string)
+                }
               />
               <Select
                 label={t("severity")}
                 defaultValue={"1"}
+                error={errors.discussion?.degree_of_importance?.message}
                 data={[
                   { label: t("low"), value: "1" },
                   { label: t("med"), value: "3" },
                   { label: t("high"), value: "5" },
-                  // { label: t("emergency"), value: "emergency" },
                 ]}
                 allowDeselect={false}
-                error={errors.discussion?.degree_of_importance?.message}
                 {...register("discussion.degree_of_importance")}
-                onChange={(val: unknown) => {
-                  setValue("discussion.degree_of_importance", val as string);
-                }}
+                onChange={(val: unknown) =>
+                  setValue("discussion.degree_of_importance", val as string)
+                }
               />
             </Group>
 

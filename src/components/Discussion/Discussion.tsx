@@ -5,10 +5,11 @@ import { LANGS } from "../../i18n/locales/type";
 import { DiscussionMessageForm } from "../Forms/DiscussionMessage/DiscussionMessage";
 import { discussion } from "../../../lib";
 import { useUserStore } from "../../stores";
+import { useEffect } from "react";
 
 type Props = {
   fullname: string;
-  discussionId: number;
+  discussionId: string;
   created_at: Date;
   data: object & { topic: string };
 };
@@ -22,6 +23,10 @@ export function Discussion({
   const langStore = useLangStore();
   type TMessage = { created_at: Date; content: string; me: boolean };
   const Message = ({ created_at, content, me }: TMessage) => {
+    useEffect(() => {
+      console.log(data);
+    }, []);
+
     return (
       <Paper
         mb={"5"}

@@ -9,24 +9,22 @@ const DashDiscussion = () => {
 
   const { data } = useQuery({
     queryFn: () => httpGetDiscussionId(parseInt(id as string, 10)),
-    queryKey: ["singleDiscussion"],
+    queryKey: ["singleDiscussion", id],
   });
-
-  console.log({ data, id });
 
   return (
     <div>
       <Container size={"rem"}>
         <div>
           <Discussion
-            // discussionId={data?.id}
+            data={data}
+            discussionId={id}
             created_at={data?.start_time}
             fullname={
               data?.tickets[0].user?.first_name +
               "  " +
               data?.tickets[0].user?.last_name
             }
-            data={data}
           />
         </div>
       </Container>
