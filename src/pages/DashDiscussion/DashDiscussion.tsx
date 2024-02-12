@@ -7,8 +7,6 @@ import { useEffect, useState } from "react";
 
 const DashDiscussion = () => {
   const { id } = useParams();
- 
-  const [chatData, setChatData] = useState([])
   
  const { data } = useQuery({
     queryFn: () => httpGetDiscussionId(parseInt(id as string, 10)),
@@ -16,10 +14,6 @@ const DashDiscussion = () => {
     
   }, 
   );
-
-  useEffect(()=>{
-    setChatData(data);
-  },[data])
 
   return (
     <div>

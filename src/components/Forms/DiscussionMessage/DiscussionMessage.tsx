@@ -8,11 +8,12 @@ import StarterKit from "@tiptap/starter-kit";
 import Highlight from "@tiptap/extension-highlight";
 import "@mantine/tiptap/styles.css";
 import { useForm } from "react-hook-form";
-import { Button, Input } from "@mantine/core";
+import { Button } from "@mantine/core";
 import { httpCreateChat } from "../../../../lib";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
-export function DiscussionMessageForm() {
+export function DiscussionMessageForm({setChat}) {
   const content = "<p>جواب خودتون اینجا بنویسید</p>";
   const { id } = useParams();
 
@@ -36,8 +37,18 @@ export function DiscussionMessageForm() {
 
   const handleSubmitMessage = async (formData: any) => {
     console.log(editor?.getHTML());
-    const { data } = await httpCreateChat(id, { text: editor?.getHTML() });
+    const res= await httpCreateChat(id, { text: editor?.getHTML() });
+
+    setChat(prev => [...prev, res.ticket])
+
+    editor?.chain().clearContent().run()
+
   };
+
+  // useEffect(()=>{
+  //   console.log();
+    
+  // })
 
   return (
     <form onSubmit={handleSubmit(handleSubmitMessage)}>

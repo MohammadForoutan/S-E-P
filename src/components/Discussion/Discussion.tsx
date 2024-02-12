@@ -7,7 +7,7 @@ import { LANGS } from "../../i18n/locales/type";
 import { DiscussionMessageForm } from "../Forms/DiscussionMessage/DiscussionMessage";
 import { discussion } from "../../../lib";
 import { useUserStore } from "../../stores";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 type Props = {
   fullname: string;
@@ -25,8 +25,6 @@ export function Discussion({
   const langStore = useLangStore();
   type TMessage = { created_at: Date; content: string; me: boolean };
   const Message = ({ created_at, content, me }: TMessage) => {
-
-
     return (
       <Paper
         mb={"5"}
@@ -36,9 +34,7 @@ export function Discussion({
         my={"15"}
         bg={me ? "#4527A099" : "#2E7D32"}
         mr={me && langStore.lang == LANGS.fa_IR ? "auto" : ""}
-        ml={me && langStore.lang == LANGS.en_US ? "auto" : ""}
-        
-        >
+        ml={me && langStore.lang == LANGS.en_US ? "auto" : ""}>
         <p dangerouslySetInnerHTML={{ __html: content }} />
         <span style={{ direction: "rtl" }}>
           {langStore.lang === LANGS.en_US
@@ -55,7 +51,12 @@ export function Discussion({
     );
   };
 
-  const userStore = useUserStore();
+  const [caht, setChat] = useState([]);
+
+  useEffect(() => {
+    console.log(caht);
+  });
+
   return (
     <Flex direction={"column"}>
       <Paper
@@ -96,7 +97,6 @@ export function Discussion({
             {data.topic}
           </Paper>
           {data?.tickets?.map((t: any) => {
-            
             return (
               <Message
                 key={t.text}
@@ -107,6 +107,36 @@ export function Discussion({
             );
           })}
 
+          {caht?.map((t: any) => {
+            return (
+              <Message
+                key={Math.random()}
+                me={t.user.is_staff}
+                content={t.text}
+                created_at={t.sent_date}
+              />
+            );
+          })}
+
+          {/* {caht?.text ? (
+            <Message
+              me={caht?.user.is_staff}
+              content={caht?.text}
+              created_at={caht?.sent_date}
+            />
+          ) : null} */}
+
+          {/* {caht?.map((t: any) => {
+            return (
+              <Message
+                key={t.text}
+                me={t.user.is_staff}
+                content={t.text}
+                created_at={t.sent_date}
+              />
+            );
+          })} */}
+
           {/* <Message me={false} content="Random text" created_at={new Date()} />
           <Message me={true} content="Random text" created_at={new Date()} />
           <Message me={false} content="Random text" created_at={new Date()} /> */}
@@ -114,7 +144,7 @@ export function Discussion({
       </div>
 
       <Paper mt={"30px"} mb={"40px"}>
-        <DiscussionMessageForm />
+        <DiscussionMessageForm setChat={setChat} />
       </Paper>
     </Flex>
   );
