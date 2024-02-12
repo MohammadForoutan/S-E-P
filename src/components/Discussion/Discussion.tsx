@@ -1,3 +1,5 @@
+/** @format */
+
 import { Flex, Group, Paper } from "@mantine/core";
 import { IconUserCircle } from "@tabler/icons-react";
 import { useLangStore } from "../../stores/langStore";
@@ -23,9 +25,7 @@ export function Discussion({
   const langStore = useLangStore();
   type TMessage = { created_at: Date; content: string; me: boolean };
   const Message = ({ created_at, content, me }: TMessage) => {
-    useEffect(() => {
-      console.log(data);
-    }, []);
+
 
     return (
       <Paper
@@ -33,12 +33,13 @@ export function Discussion({
         py={"3"}
         w={"57%"}
         px={"8"}
-        mt={"5"}
+        my={"15"}
         bg={me ? "#4527A099" : "#2E7D32"}
         mr={me && langStore.lang == LANGS.fa_IR ? "auto" : ""}
         ml={me && langStore.lang == LANGS.en_US ? "auto" : ""}
-      >
-        <p>{content}</p>
+        
+        >
+        <p dangerouslySetInnerHTML={{ __html: content }} />
         <span style={{ direction: "rtl" }}>
           {langStore.lang === LANGS.en_US
             ? new Date(created_at).toLocaleDateString("en-us", {
@@ -62,10 +63,9 @@ export function Discussion({
         display={"flex"}
         withBorder
         px={13}
-        mb={12}
-      >
+        mb={12}>
         <Group>
-          <IconUserCircle size={37} color="blue" />
+          <IconUserCircle size={37} color='blue' />
           <p>{fullname}</p>
           <p>{discussionId}</p>
         </Group>
@@ -96,10 +96,11 @@ export function Discussion({
             {data.topic}
           </Paper>
           {data?.tickets?.map((t: any) => {
+            
             return (
               <Message
                 key={t.text}
-                me={t.is_staff}
+                me={t.user.is_staff}
                 content={t.text}
                 created_at={t.sent_date}
               />

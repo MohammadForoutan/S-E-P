@@ -3,19 +3,23 @@ import { Discussion } from "../../components/Discussion/Discussion";
 import { useQuery } from "@tanstack/react-query";
 import { httpGetDiscussionId } from "../../../lib";
 import { useParams } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const DashDiscussion = () => {
   const { id } = useParams();
-
-  const { data } = useQuery({
+ 
+  const [chatData, setChatData] = useState([])
+  
+ const { data } = useQuery({
     queryFn: () => httpGetDiscussionId(parseInt(id as string, 10)),
     queryKey: ["singleDiscussion", id],
-  });
+    
+  }, 
+  );
 
   useEffect(()=>{
-    console.log(data);
-  })
+    setChatData(data);
+  },[data])
 
   return (
     <div>

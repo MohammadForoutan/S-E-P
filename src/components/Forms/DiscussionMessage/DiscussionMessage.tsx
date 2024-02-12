@@ -8,7 +8,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Highlight from "@tiptap/extension-highlight";
 import "@mantine/tiptap/styles.css";
 import { useForm } from "react-hook-form";
-import { Input } from "@mantine/core";
+import { Button, Input } from "@mantine/core";
 import { httpCreateChat } from "../../../../lib";
 import { useParams } from "react-router-dom";
 
@@ -36,17 +36,13 @@ export function DiscussionMessageForm() {
 
   const handleSubmitMessage = async (formData: any) => {
     console.log(editor?.getHTML());
-    const {data} = await httpCreateChat(id , {"text" : editor?.getHTML()})
+    const { data } = await httpCreateChat(id, { text: editor?.getHTML() });
   };
 
   return (
     <form onSubmit={handleSubmit(handleSubmitMessage)}>
-      <RichTextEditor
-        editor={editor}
-        mih={"300"}
-        >
-        <RichTextEditor.Toolbar sticky stickyOffset={60}
-        >
+      <RichTextEditor editor={editor} mih={"300"}>
+        <RichTextEditor.Toolbar sticky stickyOffset={60}>
           <RichTextEditor.ControlsGroup>
             <RichTextEditor.Bold />
             <RichTextEditor.Italic />
@@ -89,7 +85,9 @@ export function DiscussionMessageForm() {
         <RichTextEditor.Content />
       </RichTextEditor>
 
-      <button>ssssssssssss</button>
+      <Button mt={5} w={140} type="submit" variant='gradient'>
+        ارسال
+      </Button>
     </form>
   );
 }
