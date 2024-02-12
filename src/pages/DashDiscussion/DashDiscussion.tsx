@@ -17,13 +17,13 @@ const DashDiscussion = () => {
       <Container size={"rem"}>
         <div>
           <Discussion
-            data={data}
-            discussionId={id}
+            data={data.data}
+            discussionId={id!}
             created_at={data?.start_time}
             fullname={
-              data?.tickets[0].user?.first_name +
+              data.data.tickets[0].user?.first_name +
               "  " +
-              data?.tickets[0].user?.last_name
+              data.data?.tickets[0].user?.last_name
             }
           />
         </div>

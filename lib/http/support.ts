@@ -11,6 +11,7 @@ export type Ticket = {
 };
 
 export type CreateDiscussionResponse = {
+  [x: string]: any;
   id: number;
   ticket: Ticket[];
 };

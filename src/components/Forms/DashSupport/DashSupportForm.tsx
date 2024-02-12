@@ -29,9 +29,6 @@ function DashSupportForm() {
     setValue("discussion.department", "T");
   }, []);
 
-  useEffect(() => {
-    console.log({ errors });
-  }, [errors]);
   const { onCreateDiscussionSubmit } = useDiscussion();
 
   return (

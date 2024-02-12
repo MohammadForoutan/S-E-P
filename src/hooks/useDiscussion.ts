@@ -25,10 +25,8 @@ export const useDiscussion = () => {
   const onCreateDiscussionSubmit = (credentialDTO: TForm): void => {
     mutate(credentialDTO, {
       onSuccess: (data) => {
-        console.log({ data });
-
         toast.success(t("discussion_created"));
-        void navigate(`/dashboard/support/discussion/${data.data.id}`);
+        void navigate(`/dashboard/support/discussion/${data.data!.id}`);
       },
       onError: (err) => {
         console.log({ err });
