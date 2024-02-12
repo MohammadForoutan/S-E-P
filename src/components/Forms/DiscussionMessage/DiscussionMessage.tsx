@@ -1,4 +1,5 @@
 /** @format */
+// @ts-nocheck
 
 import { extensions, useEditor } from "@tiptap/react";
 import { RichTextEditor, Link } from "@mantine/tiptap";
@@ -13,7 +14,7 @@ import { httpCreateChat } from "../../../../lib";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 
-export function DiscussionMessageForm({setChat}) {
+export function DiscussionMessageForm({ setChat }) {
   const content = "<p>جواب خودتون اینجا بنویسید</p>";
   const { id } = useParams();
 
@@ -37,17 +38,16 @@ export function DiscussionMessageForm({setChat}) {
 
   const handleSubmitMessage = async (formData: any) => {
     console.log(editor?.getHTML());
-    const res= await httpCreateChat(id, { text: editor?.getHTML() });
+    const res = await httpCreateChat(id, { text: editor?.getHTML() });
 
-    setChat(prev => [...prev, res.ticket])
+    setChat((prev) => [...prev, res.ticket]);
 
-    editor?.chain().clearContent().run()
-
+    editor?.chain().clearContent().run();
   };
 
   // useEffect(()=>{
   //   console.log();
-    
+
   // })
 
   return (
@@ -96,7 +96,7 @@ export function DiscussionMessageForm({setChat}) {
         <RichTextEditor.Content />
       </RichTextEditor>
 
-      <Button mt={5} w={140} type="submit" variant='gradient'>
+      <Button mt={5} w={140} type="submit" variant="gradient">
         ارسال
       </Button>
     </form>

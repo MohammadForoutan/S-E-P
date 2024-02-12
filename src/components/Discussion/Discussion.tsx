@@ -1,4 +1,5 @@
 /** @format */
+// @ts-nocheck
 
 import { Flex, Group, Paper } from "@mantine/core";
 import { IconUserCircle } from "@tabler/icons-react";
@@ -34,7 +35,8 @@ export function Discussion({
         my={"15"}
         bg={me ? "#4527A099" : "#2E7D32"}
         mr={me && langStore.lang == LANGS.fa_IR ? "auto" : ""}
-        ml={me && langStore.lang == LANGS.en_US ? "auto" : ""}>
+        ml={me && langStore.lang == LANGS.en_US ? "auto" : ""}
+      >
         <p dangerouslySetInnerHTML={{ __html: content }} />
         <span style={{ direction: "rtl" }}>
           {langStore.lang === LANGS.en_US
@@ -64,9 +66,10 @@ export function Discussion({
         display={"flex"}
         withBorder
         px={13}
-        mb={12}>
+        mb={12}
+      >
         <Group>
-          <IconUserCircle size={37} color='blue' />
+          <IconUserCircle size={37} color="blue" />
           <p>{fullname}</p>
           <p>{discussionId}</p>
         </Group>

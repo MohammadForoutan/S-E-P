@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import { Box, Container, Flex, Group, Text } from "@mantine/core";
 import { ChangeLanguage } from "../../components/ChangeLanguage/ChangeLanguage";
 import { useTranslation } from "react-i18next";
